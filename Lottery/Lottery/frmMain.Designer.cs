@@ -30,6 +30,8 @@
         {
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnSOpen = new System.Windows.Forms.Button();
+            this.btnSDistributed = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnAdd
@@ -38,7 +40,7 @@
             this.btnAdd.Name = "btnAdd";
             this.btnAdd.Size = new System.Drawing.Size(75, 23);
             this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "新增";
+            this.btnAdd.Text = "新增修改";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -46,14 +48,34 @@
             // 
             this.panel1.Location = new System.Drawing.Point(13, 43);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(730, 430);
+            this.panel1.Size = new System.Drawing.Size(1560, 800);
             this.panel1.TabIndex = 1;
+            // 
+            // btnSOpen
+            // 
+            this.btnSOpen.Location = new System.Drawing.Point(94, 14);
+            this.btnSOpen.Name = "btnSOpen";
+            this.btnSOpen.Size = new System.Drawing.Size(75, 23);
+            this.btnSOpen.TabIndex = 2;
+            this.btnSOpen.Text = "查詢(開獎)";
+            this.btnSOpen.UseVisualStyleBackColor = true;
+            // 
+            // btnSDistributed
+            // 
+            this.btnSDistributed.Location = new System.Drawing.Point(175, 14);
+            this.btnSDistributed.Name = "btnSDistributed";
+            this.btnSDistributed.Size = new System.Drawing.Size(75, 23);
+            this.btnSDistributed.TabIndex = 3;
+            this.btnSDistributed.Text = "查詢(分布)";
+            this.btnSDistributed.UseVisualStyleBackColor = true;
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(758, 488);
+            this.ClientSize = new System.Drawing.Size(1584, 861);
+            this.Controls.Add(this.btnSDistributed);
+            this.Controls.Add(this.btnSOpen);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnAdd);
             this.Font = new System.Drawing.Font("新細明體", 9.75F);
@@ -69,6 +91,8 @@
 
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnSOpen;
+        private System.Windows.Forms.Button btnSDistributed;
     }
 }
 

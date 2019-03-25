@@ -53,7 +53,7 @@
             this.DGView.Location = new System.Drawing.Point(5, 80);
             this.DGView.Name = "DGView";
             this.DGView.RowTemplate.Height = 24;
-            this.DGView.Size = new System.Drawing.Size(702, 327);
+            this.DGView.Size = new System.Drawing.Size(1492, 667);
             this.DGView.TabIndex = 0;
             this.DGView.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DGView_CellContentClick);
             // 
@@ -200,7 +200,7 @@
             this.Controls.Add(this.DGView);
             this.Font = new System.Drawing.Font("新細明體", 9.75F);
             this.Name = "UISetData";
-            this.Size = new System.Drawing.Size(710, 410);
+            this.Size = new System.Drawing.Size(1500, 750);
             this.Load += new System.EventHandler(this.UISetData_Load);
             ((System.ComponentModel.ISupportInitialize)(this.DGView)).EndInit();
             this.ResumeLayout(false);

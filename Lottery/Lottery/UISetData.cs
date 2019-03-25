@@ -59,6 +59,13 @@ namespace Lottery
 
                 count++;
             }
+            DGView.ReadOnly = true;
+            
+        }
+
+        private void SetEnable_ADD()
+        {
+            DGView.Enabled = false;
         }
     }
 }
