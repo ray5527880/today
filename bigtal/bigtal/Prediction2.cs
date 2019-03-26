@@ -397,5 +397,110 @@ namespace bigtal
                 MessageBox.Show(str);
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int countball = 5;
+            float[] NumberWeighted = new float[39];
+            int[,] NumberAndNumber = new int[39, 39];
+
+
+            int[] BefterNumber = new int[countball];
+            using (var m_sqlConn = new SqlConnection(EditXml.strConnectionSetting))
+            {
+                m_sqlConn.Open();
+                string strSqlCount = "Select * from [" + EditXml.strSettingDBName + "].[dbo].[tMe] order by [No] desc";
+                using (var sqlCmd = new SqlCommand(strSqlCount, m_sqlConn))
+                {
+                    using (var sqlRdr = sqlCmd.ExecuteReader())
+                    {
+                        int count = 0;
+                        while (sqlRdr.Read())
+                        {
+                            if (count > 99)
+                                break;
+                            //Convert.ToDecimal(sqlRdr["Number" + (ii + 1).ToString()])
+                            for (int ii = 0; ii < countball; ii++)
+                            {
+                                if (BefterNumber[ii] == 0)
+                                {
+                                    BefterNumber[ii] = Convert.ToInt32(sqlRdr["Number" + (ii + 1).ToString()]);
+                                }
+                                else
+                                {
+                                    int x = Convert.ToInt32(sqlRdr["Number" + (ii + 1).ToString()]);
+                                    NumberAndNumber[BefterNumber[ii] - 1, x - 1]++;
+                                    BefterNumber[ii] = Convert.ToInt32(sqlRdr["Number" + (ii + 1).ToString()]);
+                                }
+                            }
+                            count++;
+                        }
+                    }
+                }
+                strSqlCount = "Select top(1) * from [" + EditXml.strSettingDBName + "].[dbo].[tMe] order by [No] desc";
+                using (var sqlCmd = new SqlCommand(strSqlCount, m_sqlConn))
+                {
+                    using (var sqlRdr = sqlCmd.ExecuteReader())
+                    {
+                        while (sqlRdr.Read())
+                        {
+                            for (int ii = 0; ii < countball; ii++)
+                            {
+                                for (int jj = 0; jj < 39; jj++)
+                                {
+                                    //-----------------------------------------
+                                    NumberWeighted[jj] = NumberWeighted[jj] + NumberAndNumber[Convert.ToInt32(sqlRdr["Number" + (ii + 1).ToString()]) - 1, jj];                                   
+                                }
+                            }
+                        }
+                    }
+                }
+                strSqlCount = "Select top(20) * from [" + EditXml.strSettingDBName + "].[dbo].[tMe] order by [No] desc";
+                using (var sqlCmd = new SqlCommand(strSqlCount, m_sqlConn))
+                {
+                    using (var sqlRdr = sqlCmd.ExecuteReader())
+                    {
+                        while (sqlRdr.Read())
+                        {
+                            for (int ii = 0; ii < countball; ii++)
+                            {
+                                var x = Convert.ToInt32(sqlRdr["Number" + (ii + 1).ToString()]) - 1;
+                                NumberWeighted[x] += 0.5f;
+                                
+                            }
+                        }
+                    }
+                }
+                float[] sortArray = new float[39];
+                for (int i = 0; i < 39; i++)
+                {
+                    sortArray[i] = NumberWeighted[i];
+                }
+                List<int> sss = new List<int>();
+                Array.Sort(sortArray);
+                string str = "";
+                for (int i = 38; i > 33; i--)
+                {
+                    for (int ii = 0; ii < 39; ii++)
+                    {
+                        if (sortArray[i] == NumberWeighted[ii])
+                        {
+                            bool c = true;
+                            foreach (var x in sss)
+                            {
+                                if (x == (ii + 1))
+                                    c = false;
+                            }
+                            if (c)
+                            {
+                                str += (ii + 1).ToString() + ",";
+                                sss.Add(ii + 1);
+                            }
+                        }
+                    }
+                }
+                MessageBox.Show(str);
+            }
+        }
     }
 }

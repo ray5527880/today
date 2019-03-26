@@ -81,18 +81,16 @@ namespace Lottery
                 return;
             XmlElement mainNode = (XmlElement)xmlNode;
             mainNode.RemoveAll();
-            foreach (var item in EditXml.m_UserID)
+            foreach (var item in EditXml.mToday)
             {
-                XmlElement info = xmlDoc.CreateElement("UserID");
-                info.SetAttribute("name", item.UserName);
-                info.InnerText = item.ID;
-                mainNode.AppendChild(info);
-            }
-            foreach (var item in EditXml.m_GroupID)
-            {
-                XmlElement info = xmlDoc.CreateElement("GroupID");
-                info.SetAttribute("name", item.GroupName);
-                info.InnerText = item.ID;
+                XmlElement info = xmlDoc.CreateElement("Today");
+                info.SetAttribute("Date", item.Date);
+                info.SetAttribute("Period", item.Period.ToString());
+                info.SetAttribute("No1", string.Format("{0:00}", item.No1));
+                info.SetAttribute("No2", string.Format("{0:00}", item.No2));
+                info.SetAttribute("No3", string.Format("{0:00}", item.No3));
+                info.SetAttribute("No4", string.Format("{0:00}", item.No4));
+                info.SetAttribute("No5", string.Format("{0:00}", item.No5));
                 mainNode.AppendChild(info);
             }
             xmlDoc.Save(m_strXmlFile);

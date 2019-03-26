@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Net.NetworkInformation;
+using System.Text.RegularExpressions;
 
 namespace Lottery
 {
@@ -52,11 +54,10 @@ namespace Lottery
             foreach (var item in EditXml.mToday )
             {
                 if (count > 20)
-                    return; 
-                string[] str = new string[] {item.Date,item.Period.ToString(),item.No1.ToString(),item.No2.ToString(),
-                    item.No3.ToString(),item.No4.ToString(),item.No5.ToString() };
+                    return;
+                string[] str = new string[] {item.Date,item.Period.ToString(),String.Format("{0:00}", item.No1),String.Format("{0:00}", item.No2),
+                    String.Format("{0:00}", item.No3),String.Format("{0:00}", item.No4),String.Format("{0:00}", item.No5) };
                 DGView.Rows.Add(str);
-
                 count++;
             }
             DGView.ReadOnly = true;
@@ -66,6 +67,40 @@ namespace Lottery
         private void SetEnable_ADD()
         {
             DGView.Enabled = false;
+        }
+
+        private void btnApply_Click(object sender, EventArgs e)
+        {
+            var Date = dateTimePicker1.Value.Year + string.Format("{0:00}", dateTimePicker1.Value.Month)
+                + string.Format("{0:00}", dateTimePicker1.Value.Day);
+            if (Regex.IsMatch(textBox1.Text, "^[0-9]{6,}$"))
+            {
+                if (NunberCheck(textBox2.Text) && NunberCheck(textBox3.Text) && NunberCheck(textBox4.Text) && NunberCheck(textBox4.Text) && NunberCheck(textBox5.Text) && NunberCheck(textBox6.Text))
+                {
+                    var _ToDay = new EditXml.Today
+                    {
+                        Date = dateTimePicker1.Text,
+                        Period = Convert.ToInt32(textBox1.Text),
+                        No1 = Convert.ToInt32(textBox2.Text),
+                        No2 = Convert.ToInt32(textBox3.Text),
+                        No3 = Convert.ToInt32(textBox4.Text),
+                        No4 = Convert.ToInt32(textBox5.Text),
+                        No5 = Convert.ToInt32(textBox6.Text)
+                    };
+                    EditXml.mToday.Add(_ToDay);
+                }
+            }
+            SetDGView();
+        }
+        private bool NunberCheck(string _NO)
+        {
+            if (!Regex.IsMatch(_NO, "^[0-9]{2,}$"))
+                return false;
+            if (Convert.ToInt32(_NO) < 0)
+                return false;
+            if (Convert.ToInt32(_NO) > 40)
+                return false;
+            return true;
         }
     }
 }

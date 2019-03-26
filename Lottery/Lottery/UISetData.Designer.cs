@@ -177,6 +177,7 @@
             this.btnApply.TabIndex = 15;
             this.btnApply.Text = "套用";
             this.btnApply.UseVisualStyleBackColor = true;
+            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // UISetData
             // 
