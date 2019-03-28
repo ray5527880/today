@@ -17,11 +17,7 @@ namespace Lottery
         {
             public string Date;
             public int Period;
-            public int No1;
-            public int No2;
-            public int No3;
-            public int No4;
-            public int No5;
+            public int[] No;
         }
         public static List<Today> mToday;
 
@@ -61,11 +57,14 @@ namespace Lottery
                 {
                     Date = ((XmlElement)item).GetAttribute("Date"),
                     Period = Convert.ToInt32(((XmlElement)item).GetAttribute("Period")),
-                    No1 = Convert.ToInt32(((XmlElement)item).GetAttribute("No1")),
-                    No2 = Convert.ToInt32(((XmlElement)item).GetAttribute("No2")),
-                    No3 = Convert.ToInt32(((XmlElement)item).GetAttribute("No3")),
-                    No4 = Convert.ToInt32(((XmlElement)item).GetAttribute("No4")),
-                    No5 = Convert.ToInt32(((XmlElement)item).GetAttribute("No5"))
+                    No=new int[]
+                    {
+                        Convert.ToInt32(((XmlElement)item).GetAttribute("No1")),
+                        Convert.ToInt32(((XmlElement)item).GetAttribute("No2")),
+                        Convert.ToInt32(((XmlElement)item).GetAttribute("No3")),
+                        Convert.ToInt32(((XmlElement)item).GetAttribute("No4")),
+                        Convert.ToInt32(((XmlElement)item).GetAttribute("No5"))
+                    }                  
                 };
 
                 mToday.Add(_today);
@@ -86,11 +85,11 @@ namespace Lottery
                 XmlElement info = xmlDoc.CreateElement("Today");
                 info.SetAttribute("Date", item.Date);
                 info.SetAttribute("Period", item.Period.ToString());
-                info.SetAttribute("No1", string.Format("{0:00}", item.No1));
-                info.SetAttribute("No2", string.Format("{0:00}", item.No2));
-                info.SetAttribute("No3", string.Format("{0:00}", item.No3));
-                info.SetAttribute("No4", string.Format("{0:00}", item.No4));
-                info.SetAttribute("No5", string.Format("{0:00}", item.No5));
+                info.SetAttribute("No1", string.Format("{0:00}", item.No[0]));
+                info.SetAttribute("No2", string.Format("{0:00}", item.No[1]));
+                info.SetAttribute("No3", string.Format("{0:00}", item.No[2]));
+                info.SetAttribute("No4", string.Format("{0:00}", item.No[3]));
+                info.SetAttribute("No5", string.Format("{0:00}", item.No[4]));
                 mainNode.AppendChild(info);
             }
             xmlDoc.Save(m_strXmlFile);

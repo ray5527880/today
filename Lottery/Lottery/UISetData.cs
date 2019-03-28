@@ -55,13 +55,12 @@ namespace Lottery
             {
                 if (count > 20)
                     return;
-                string[] str = new string[] {item.Date,item.Period.ToString(),String.Format("{0:00}", item.No1),String.Format("{0:00}", item.No2),
-                    String.Format("{0:00}", item.No3),String.Format("{0:00}", item.No4),String.Format("{0:00}", item.No5) };
+                string[] str = new string[] {item.Date,item.Period.ToString(),String.Format("{0:00}", item.No[0]),String.Format("{0:00}", item.No[1]),
+                    String.Format("{0:00}", item.No[2]),String.Format("{0:00}", item.No[3]),String.Format("{0:00}", item.No[4]) };
                 DGView.Rows.Add(str);
                 count++;
             }
-            DGView.ReadOnly = true;
-            
+            DGView.ReadOnly = true;            
         }
 
         private void SetEnable_ADD()
@@ -75,32 +74,27 @@ namespace Lottery
                 + string.Format("{0:00}", dateTimePicker1.Value.Day);
             if (Regex.IsMatch(textBox1.Text, "^[0-9]{6,}$"))
             {
-                if (NunberCheck(textBox2.Text) && NunberCheck(textBox3.Text) && NunberCheck(textBox4.Text) && NunberCheck(textBox4.Text) && NunberCheck(textBox5.Text) && NunberCheck(textBox6.Text))
+                var _ToDay = new EditXml.Today
                 {
-                    var _ToDay = new EditXml.Today
+                    Date = Date,
+                    Period = Convert.ToInt32(textBox1.Text),
+                    No = new int[]
                     {
-                        Date = dateTimePicker1.Text,
-                        Period = Convert.ToInt32(textBox1.Text),
-                        No1 = Convert.ToInt32(textBox2.Text),
-                        No2 = Convert.ToInt32(textBox3.Text),
-                        No3 = Convert.ToInt32(textBox4.Text),
-                        No4 = Convert.ToInt32(textBox5.Text),
-                        No5 = Convert.ToInt32(textBox6.Text)
-                    };
-                    EditXml.mToday.Add(_ToDay);
-                }
+                        Convert.ToInt32(textBox2.Text),
+                        Convert.ToInt32(textBox3.Text),
+                        Convert.ToInt32(textBox4.Text),
+                        Convert.ToInt32(textBox5.Text),
+                        Convert.ToInt32(textBox6.Text)
+                    }
+                };
+                EditXml.mToday.Add(_ToDay);
+                textBox2.Text = string.Empty;
+                textBox3.Text = string.Empty;
+                textBox4.Text = string.Empty;
+                textBox5.Text = string.Empty;
+                textBox6.Text = string.Empty;
             }
             SetDGView();
-        }
-        private bool NunberCheck(string _NO)
-        {
-            if (!Regex.IsMatch(_NO, "^[0-9]{2,}$"))
-                return false;
-            if (Convert.ToInt32(_NO) < 0)
-                return false;
-            if (Convert.ToInt32(_NO) > 40)
-                return false;
-            return true;
         }
     }
 }

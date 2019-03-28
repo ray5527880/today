@@ -36,31 +36,13 @@ namespace Lottery
             int[,] x = new int[39, 39];
             for (int _index = 1; _index <= 100; _index++)
             {
-                x[EditXml.mToday[_index].No1 - 1, EditXml.mToday[_index - 1].No1 - 1]++;
-                x[EditXml.mToday[_index].No1 - 1, EditXml.mToday[_index - 1].No2 - 1]++;
-                x[EditXml.mToday[_index].No1 - 1, EditXml.mToday[_index - 1].No3 - 1]++;
-                x[EditXml.mToday[_index].No1 - 1, EditXml.mToday[_index - 1].No4 - 1]++;
-                x[EditXml.mToday[_index].No1 - 1, EditXml.mToday[_index - 1].No5 - 1]++;
-                x[EditXml.mToday[_index].No2 - 1, EditXml.mToday[_index - 1].No1 - 1]++;
-                x[EditXml.mToday[_index].No2 - 1, EditXml.mToday[_index - 1].No2 - 1]++;
-                x[EditXml.mToday[_index].No2 - 1, EditXml.mToday[_index - 1].No3 - 1]++;
-                x[EditXml.mToday[_index].No2 - 1, EditXml.mToday[_index - 1].No4 - 1]++;
-                x[EditXml.mToday[_index].No2 - 1, EditXml.mToday[_index - 1].No5 - 1]++;
-                x[EditXml.mToday[_index].No3 - 1, EditXml.mToday[_index - 1].No1 - 1]++;
-                x[EditXml.mToday[_index].No3 - 1, EditXml.mToday[_index - 1].No2 - 1]++;
-                x[EditXml.mToday[_index].No3 - 1, EditXml.mToday[_index - 1].No3 - 1]++;
-                x[EditXml.mToday[_index].No3 - 1, EditXml.mToday[_index - 1].No4 - 1]++;
-                x[EditXml.mToday[_index].No3 - 1, EditXml.mToday[_index - 1].No5 - 1]++;
-                x[EditXml.mToday[_index].No4 - 1, EditXml.mToday[_index - 1].No1 - 1]++;
-                x[EditXml.mToday[_index].No4 - 1, EditXml.mToday[_index - 1].No2 - 1]++;
-                x[EditXml.mToday[_index].No4 - 1, EditXml.mToday[_index - 1].No3 - 1]++;
-                x[EditXml.mToday[_index].No4 - 1, EditXml.mToday[_index - 1].No4 - 1]++;
-                x[EditXml.mToday[_index].No4 - 1, EditXml.mToday[_index - 1].No5 - 1]++;
-                x[EditXml.mToday[_index].No5 - 1, EditXml.mToday[_index - 1].No1 - 1]++;
-                x[EditXml.mToday[_index].No5 - 1, EditXml.mToday[_index - 1].No2 - 1]++;
-                x[EditXml.mToday[_index].No5 - 1, EditXml.mToday[_index - 1].No3 - 1]++;
-                x[EditXml.mToday[_index].No5 - 1, EditXml.mToday[_index - 1].No4 - 1]++;
-                x[EditXml.mToday[_index].No5 - 1, EditXml.mToday[_index - 1].No5 - 1]++;
+                for(int i = 0; i < 5; i++)
+                {
+                    for (int ii = 0; ii < 5; ii++)
+                    {
+                        x[EditXml.mToday[_index].No[i] - 1, EditXml.mToday[_index - 1].No[ii] - 1]++;
+                    }
+                }                
             }
         }
 

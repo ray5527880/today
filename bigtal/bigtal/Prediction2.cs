@@ -455,7 +455,7 @@ namespace bigtal
                         }
                     }
                 }
-                strSqlCount = "Select top(20) * from [" + EditXml.strSettingDBName + "].[dbo].[tMe] order by [No] desc";
+                strSqlCount = "Select top(10) * from [" + EditXml.strSettingDBName + "].[dbo].[tMe] order by [No] desc";
                 using (var sqlCmd = new SqlCommand(strSqlCount, m_sqlConn))
                 {
                     using (var sqlRdr = sqlCmd.ExecuteReader())
@@ -465,7 +465,7 @@ namespace bigtal
                             for (int ii = 0; ii < countball; ii++)
                             {
                                 var x = Convert.ToInt32(sqlRdr["Number" + (ii + 1).ToString()]) - 1;
-                                NumberWeighted[x] += 0.5f;
+                                NumberWeighted[x] += 1f;
                                 
                             }
                         }
