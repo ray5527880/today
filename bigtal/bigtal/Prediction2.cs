@@ -448,7 +448,7 @@ namespace bigtal
                             {
                                 for (int jj = 0; jj < 39; jj++)
                                 {
-                                    //-----------------------------------------
+                                    //-----------------------------------------                                    
                                     NumberWeighted[jj] = NumberWeighted[jj] + NumberAndNumber[Convert.ToInt32(sqlRdr["Number" + (ii + 1).ToString()]) - 1, jj];                                   
                                 }
                             }

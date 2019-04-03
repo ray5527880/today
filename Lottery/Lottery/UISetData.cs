@@ -21,7 +21,15 @@ namespace Lottery
 
         private void UISetData_Load(object sender, EventArgs e)
         {
-            
+            int count = 0;
+            string str = string.Empty;
+            for(int i = 0; i < 25; i++)
+            {
+                count += (10 + 20 * i);
+                str += count.ToString() /*+ "," + ((10 + 5 * i) * 9.9).ToString() */+ "\n";
+            }
+            MessageBox.Show(str);
+
             DGView.ColumnCount = 7;
             DGView.Columns[0].Name = "日期";
             DGView.Columns[1].Name = "期數";
