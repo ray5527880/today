@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "bigtal", "bigtal\bigtal.csproj", "{A3416829-0408-4E75-A403-12B161C5768E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "test", "test\test.csproj", "{E027316C-7195-46FE-9F12-A99347B48B90}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +15,10 @@ Global
 		{A3416829-0408-4E75-A403-12B161C5768E}.Debug|x86.Build.0 = Debug|x86
 		{A3416829-0408-4E75-A403-12B161C5768E}.Release|x86.ActiveCfg = Release|x86
 		{A3416829-0408-4E75-A403-12B161C5768E}.Release|x86.Build.0 = Release|x86
+		{E027316C-7195-46FE-9F12-A99347B48B90}.Debug|x86.ActiveCfg = Debug|x86
+		{E027316C-7195-46FE-9F12-A99347B48B90}.Debug|x86.Build.0 = Debug|x86
+		{E027316C-7195-46FE-9F12-A99347B48B90}.Release|x86.ActiveCfg = Release|x86
+		{E027316C-7195-46FE-9F12-A99347B48B90}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
