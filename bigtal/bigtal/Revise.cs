@@ -12,7 +12,6 @@ namespace bigtal
 {
     public partial class Revise : UserControl
     {
-        public int SelectGame;
         public int NumberLenght;
         public Boolean bCheck;
         public enum tableName
@@ -35,12 +34,9 @@ namespace bigtal
         public tMe[] m_tMe;
         private int m_nIndex;
         int m_nCount;
-        public Revise(int selectGame)
+        public Revise()
         {
-            SelectGame = selectGame;
             InitializeComponent();
-            //text11111
-            ///jdjjjjf
         }
 
         private void Revise_Load(object sender, EventArgs e)
@@ -54,171 +50,65 @@ namespace bigtal
             textNum2.Text = "";
             textNum3.Text = "";
             textNum4.Text = "";
-            textNum5.Text = ""; 
-
-            switch (SelectGame)
-            {
-                case 0:
-                    NumberLenght = 39;
-                    break;
-                case 1:
-                    NumberLenght = 38;
-                    break;
-                case 2:
-                    NumberLenght = 40;
-                    break;
-                case 3:
-                    NumberLenght = 49;
-                    break;
-                case 4:
-                    NumberLenght = 49;
-                    break;
-
-            }
+            textNum5.Text = "";
+            //setdate();
             dgvDataSet();
             
-            
+        }
+
+        private void setdate()
+        {
+            dgvData.ColumnCount = 2;
+            dgvData.Columns[0].Name = "期號";
+            dgvData.Columns[1].Name = "時間";
+            int no = 108000001;
+            DateTime d = Convert.ToDateTime("2019-01-01 00:00:00");
+            DateTime e = Convert.ToDateTime("2019-07-16 00:00:00");
+            while (e > d)
+            {                
+                if (d.DayOfWeek != DayOfWeek.Sunday)
+                {                    
+                    string[] row = new string[] {no.ToString(), d.ToString("yyyy/MM/dd") };
+                    dgvData.Rows.Add(row);
+                    no++;
+                } 
+                d = d.AddDays(1);
+                
+            }
         }
         private void dgvDataSet()
         {
-            switch(SelectGame){
-                case 0:
-                    dgvData.ColumnCount = 7;
-                    dgvData.Columns[0].Width = 70;
-                    dgvData.Columns[1].Width = 95;
-                    dgvData.Columns[2].Width = 50;
-                    dgvData.Columns[3].Width = 50;
-                    dgvData.Columns[4].Width = 50;
-                    dgvData.Columns[5].Width = 50;
-                    dgvData.Columns[6].Width = 50;
-                    dgvData.Columns[0].Name = "期號";
-                    dgvData.Columns[1].Name = "時間";
-                    dgvData.Columns[2].Name = "號碼1";
-                    dgvData.Columns[3].Name = "號碼2";
-                    dgvData.Columns[4].Name = "號碼3";
-                    dgvData.Columns[5].Name = "號碼4";
-                    dgvData.Columns[6].Name = "號碼5";
-                    dgvData.ReadOnly = true;
-                    dgvData.Rows.Clear();
-                    UpdateDataGridView();
-                    break;
-                case 1:
-                    dgvData.ColumnCount = 8;
-                    dgvData.Columns[0].Width = 70;
-                    dgvData.Columns[1].Width = 95;
-                    dgvData.Columns[2].Width = 50;
-                    dgvData.Columns[3].Width = 50;
-                    dgvData.Columns[4].Width = 50;
-                    dgvData.Columns[5].Width = 50;
-                    dgvData.Columns[6].Width = 50;
-                    dgvData.Columns[7].Width = 50;
-                    dgvData.Columns[0].Name = "期號";
-                    dgvData.Columns[1].Name = "時間";
-                    dgvData.Columns[2].Name = "號碼1";
-                    dgvData.Columns[3].Name = "號碼2";
-                    dgvData.Columns[4].Name = "號碼3";
-                    dgvData.Columns[5].Name = "號碼4";
-                    dgvData.Columns[6].Name = "號碼5";
-                    dgvData.Columns[7].Name = "號碼6";
-                    dgvData.ReadOnly = true;
-                    dgvData.Rows.Clear();
-                    UpdateDataGridView();
-                    break;
-                case 2:
-                    dgvData.ColumnCount = 9;
-                    dgvData.Columns[0].Width = 70;
-                    dgvData.Columns[1].Width = 95;
-                    dgvData.Columns[2].Width = 50;
-                    dgvData.Columns[3].Width = 50;
-                    dgvData.Columns[4].Width = 50;
-                    dgvData.Columns[5].Width = 50;
-                    dgvData.Columns[6].Width = 50;
-                    dgvData.Columns[7].Width = 50;
-                    dgvData.Columns[8].Width = 50;
-                    dgvData.Columns[0].Name = "期號";
-                    dgvData.Columns[1].Name = "時間";
-                    dgvData.Columns[2].Name = "號碼1";
-                    dgvData.Columns[3].Name = "號碼2";
-                    dgvData.Columns[4].Name = "號碼3";
-                    dgvData.Columns[5].Name = "號碼4";
-                    dgvData.Columns[6].Name = "號碼5";
-                    dgvData.Columns[7].Name = "號碼6";
-                    dgvData.Columns[8].Name = "號碼7";
-                    dgvData.ReadOnly = true;
-                    dgvData.Rows.Clear();
-                    UpdateDataGridView();
-                    break;
-               case 3:
-                    dgvData.ColumnCount = 9;
-                    dgvData.Columns[0].Width = 70;
-                    dgvData.Columns[1].Width = 95;
-                    dgvData.Columns[2].Width = 50;
-                    dgvData.Columns[3].Width = 50;
-                    dgvData.Columns[4].Width = 50;
-                    dgvData.Columns[5].Width = 50;
-                    dgvData.Columns[6].Width = 50;
-                    dgvData.Columns[7].Width = 50;
-                    dgvData.Columns[8].Width = 50;
-                    dgvData.Columns[0].Name = "期號";
-                    dgvData.Columns[1].Name = "時間";
-                    dgvData.Columns[2].Name = "號碼1";
-                    dgvData.Columns[3].Name = "號碼2";
-                    dgvData.Columns[4].Name = "號碼3";
-                    dgvData.Columns[5].Name = "號碼4";
-                    dgvData.Columns[6].Name = "號碼5";
-                    dgvData.Columns[7].Name = "號碼6";
-                    dgvData.Columns[8].Name = "特別號";
-                    dgvData.ReadOnly = true;
-                    dgvData.Rows.Clear();
-                    UpdateDataGridView();
-                    break;
-               case 4:
-                    dgvData.ColumnCount = 9;
-                    dgvData.Columns[0].Width = 70;
-                    dgvData.Columns[1].Width = 95;
-                    dgvData.Columns[2].Width = 50;
-                    dgvData.Columns[3].Width = 50;
-                    dgvData.Columns[4].Width = 50;
-                    dgvData.Columns[5].Width = 50;
-                    dgvData.Columns[6].Width = 50;
-                    dgvData.Columns[7].Width = 50;
-                    dgvData.Columns[8].Width = 50;
-                    dgvData.Columns[0].Name = "期號";
-                    dgvData.Columns[1].Name = "時間";
-                    dgvData.Columns[2].Name = "號碼1";
-                    dgvData.Columns[3].Name = "號碼2";
-                    dgvData.Columns[4].Name = "號碼3";
-                    dgvData.Columns[5].Name = "號碼4";
-                    dgvData.Columns[6].Name = "號碼5";
-                    dgvData.Columns[7].Name = "號碼6";
-                    dgvData.Columns[8].Name = "特別號";
-                    dgvData.ReadOnly = true;
-                    dgvData.Rows.Clear();
-                    UpdateDataGridView();
-                    break;
-            }
+            dgvData.ColumnCount = 7;
+            dgvData.Columns[0].Width = 70;
+            dgvData.Columns[1].Width = 95;
+            dgvData.Columns[2].Width = 50;
+            dgvData.Columns[3].Width = 50;
+            dgvData.Columns[4].Width = 50;
+            dgvData.Columns[5].Width = 50;
+            dgvData.Columns[6].Width = 50;
+            dgvData.Columns[0].Name = "期號";
+            dgvData.Columns[1].Name = "時間";
+            dgvData.Columns[2].Name = "號碼1";
+            dgvData.Columns[3].Name = "號碼2";
+            dgvData.Columns[4].Name = "號碼3";
+            dgvData.Columns[5].Name = "號碼4";
+            dgvData.Columns[6].Name = "號碼5";
+            dgvData.ReadOnly = true;
+            dgvData.Rows.Clear();
+            UpdateDataGridView();
         }
         private void UpdateDataGridView()
         {
             dgvData.Rows.Clear();
             m_nCount = GetData();
             string[] row;
-            if (SelectGame == 0)
+
+            for (int jj = 0; jj < m_nCount; jj++)
             {
-                for (int jj = 0; jj < m_nCount; jj++)
-                {
-                    row = new string[] { m_tMe[jj].No.ToString(), m_tMe[jj].DTime.ToString("yyyy/MM/dd"), m_tMe[jj].Number1.ToString(), m_tMe[jj].Number2.ToString(), m_tMe[jj].Number3.ToString(), m_tMe[jj].Number4.ToString(), m_tMe[jj].Number5.ToString() };
-                    dgvData.Rows.Add(row);
-                }
+                row = new string[] { m_tMe[jj].No.ToString(), m_tMe[jj].DTime.ToString("yyyy/MM/dd"), m_tMe[jj].Number1.ToString(), m_tMe[jj].Number2.ToString(), m_tMe[jj].Number3.ToString(), m_tMe[jj].Number4.ToString(), m_tMe[jj].Number5.ToString() };
+                dgvData.Rows.Add(row);
             }
-            if (SelectGame == 1)
-            {
-                for (int jj = 0; jj < m_nCount; jj++)
-                {
-                    row = new string[] { m_tMe[jj].No.ToString(), m_tMe[jj].DTime.ToString("yyyy/MM/dd"), m_tMe[jj].Number1.ToString(), m_tMe[jj].Number2.ToString(), m_tMe[jj].Number3.ToString(), m_tMe[jj].Number4.ToString(), m_tMe[jj].Number5.ToString() };
-                    dgvData.Rows.Add(row);
-                }
-            }
+          
             dgvData.Rows[0].Cells[0].Selected = false;
             dgvData.Rows[m_nCount].Selected = true;
             dgvData.Rows[m_nCount].Cells[0].Value = "新增...";
@@ -229,10 +119,9 @@ namespace bigtal
         }
         private int GetData()
         {
-            string tbName = ((tableName)SelectGame).ToString();
             SqlConnection m_sqlConn = new SqlConnection(EditXml.strConnectionSetting);
             m_sqlConn.Open();
-            string strSqlCount = "Select count(*) as [Count] from [" + EditXml.strSettingDBName + "].[dbo].["+tbName+"]";
+            string strSqlCount = "Select count(*) as [Count] from [" + EditXml.strSettingDBName + "].[dbo].[tMe]";
             SqlCommand sqlCmdCount = new SqlCommand(strSqlCount, m_sqlConn);
             int nRows = (Int32)sqlCmdCount.ExecuteScalar();
             if (nRows >= 10)
@@ -243,7 +132,7 @@ namespace bigtal
             {
                 m_tMe = new tMe[nRows];
             }
-            string strSQL = "SELECT TOP(10) * From [" + EditXml.strSettingDBName + "].[dbo].["+tbName+"] order by [No] desc";
+            string strSQL = "SELECT TOP(10) * From [" + EditXml.strSettingDBName + "].[dbo].[tMe] order by [No] desc";
             SqlCommand sqlCmd = new SqlCommand(strSQL, m_sqlConn);
             SqlDataReader sqlRdr = sqlCmd.ExecuteReader();
             int nCount = 0;
@@ -258,11 +147,6 @@ namespace bigtal
                     m_tMe[nCount].Number3 = Convert.ToDecimal(sqlRdr["Number3"]);
                     m_tMe[nCount].Number4 = Convert.ToDecimal(sqlRdr["Number4"]);
                     m_tMe[nCount].Number5 = Convert.ToDecimal(sqlRdr["Number5"]);
-                    if (SelectGame == 4)
-                    {
-                        m_tMe[nCount].Number6 = Convert.ToDecimal(sqlRdr["Number6"]);
-                        m_tMe[nCount].SPNumber = Convert.ToDecimal(sqlRdr["SPNumber"]);
-                    }
                     nCount++;
                 }
                                 

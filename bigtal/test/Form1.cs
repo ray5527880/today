@@ -18,7 +18,7 @@ namespace test
         public List<string> number;
         public decimal decProfit;
         public decimal decOutlay;
-        public decimal decOdds = 6.61m;
+        public decimal decOdds = 22.3m;
         public decimal decBase = 10;
         public List<int> pu;
          
@@ -74,10 +74,10 @@ namespace test
                         countNumber++;
                     }
                 }
-                decOutlay += decBase * 3;
-                if (countNumber == 2)
-                    decProfit += decBase * decOdds;
+                decOutlay += decBase * 4;
                 if (countNumber == 3)
+                    decProfit += decBase * decOdds;
+                if (countNumber == 4)
                     decProfit += decBase * decOdds * 3;
                 label1.Text = "支出：" + decOutlay;
                 label2.Text = "獲利：" + decProfit;
@@ -103,12 +103,13 @@ namespace test
                 int no1 = -1;
                 int no2 = -1;
                 int no3 = -1;
-                for (int j = 0; j < 3; j++)
+                int no4 = -1;
+                for (int j = 0; j < 4; j++)
                 {
                     int max = 0;
                     for (int i = 0; i < 10; i++)
                     {
-                        if (no1 != i && no2 != i)
+                        if (no1 != i && no2 != i && no3 != i)
                         {
                             if (m[i] > max)
                             {
@@ -118,15 +119,19 @@ namespace test
                                     no2 = i;
                                 if (j == 2)
                                     no3 = i;
+                                if (j == 3)
+                                    no4 = i;
                                 max = m[i];
                             }
+
                         }
                     }
                 }
                 pu.Add(no1);
                 pu.Add(no2);
                 pu.Add(no3);
-                label4.Text = "推薦下注：" + pu[0].ToString() + pu[1].ToString() + pu[2].ToString();
+                pu.Add(no4);
+                label4.Text = "推薦下注：" + pu[0].ToString() + pu[1].ToString() + pu[2].ToString() + pu[3].ToString();
                 number.RemoveAt(0);
                 number.Add(txtNumber.Text);
                 txtNumber.Text = "";

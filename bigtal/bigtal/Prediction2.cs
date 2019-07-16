@@ -16,6 +16,7 @@ namespace bigtal
         int No = 5;
         int period = 6;
         int TopSelect=10;
+        decimal [] number;
         public Prediction2()
         {
             InitializeComponent();
@@ -23,7 +24,120 @@ namespace bigtal
         private void Prediction2_Load(object sender, EventArgs e)
         {
             EditXml EXml = new EditXml();
-            EXml.DetDB();            
+            EXml.DetDB();
+            number = new decimal[39];
+            getTwoNunber();
+            int i = 0;
+        }
+
+        private void getTwoNunber()
+        {
+            using (SqlConnection m_sqlConn = new SqlConnection(EditXml.strConnectionSetting))
+            {
+                m_sqlConn.Open();
+                int[] NewNumber = new int[5];
+                string str = "Select TOP(1) * from[" + EditXml.strSettingDBName + "].[dbo].[tMe] order by [Date] desc";
+                using (var sqlcmd = new SqlCommand(str, m_sqlConn))
+                {
+                    using (var sqlr = sqlcmd.ExecuteReader())
+                    {
+                        int[] Bnumber = new int[5];
+                        while (sqlr.Read())
+                        {
+                            NewNumber[0] = Convert.ToInt32(sqlr["Number1"]);
+                            NewNumber[1] = Convert.ToInt32(sqlr["Number2"]);
+                            NewNumber[2] = Convert.ToInt32(sqlr["Number3"]);
+                            NewNumber[3] = Convert.ToInt32(sqlr["Number4"]);
+                            NewNumber[4] = Convert.ToInt32(sqlr["Number5"]);
+                        }
+                    }
+                }
+
+                str = "Select * from[" + EditXml.strSettingDBName + "].[dbo].[tMe] order by [Date] ";
+                using (var sqlcmd = new SqlCommand(str, m_sqlConn))
+                {
+                    using (var sqlr = sqlcmd.ExecuteReader())
+                    {
+                        int[] Bnumber = new int[5];
+                        while (sqlr.Read())
+                        {
+                            if (Bnumber[0] == null)
+                            {
+                                Bnumber[0] = Convert.ToInt32(sqlr["Number1"]);
+                                Bnumber[1] = Convert.ToInt32(sqlr["Number2"]);
+                                Bnumber[2] = Convert.ToInt32(sqlr["Number3"]);
+                                Bnumber[3] = Convert.ToInt32(sqlr["Number4"]);
+                                Bnumber[4] = Convert.ToInt32(sqlr["Number5"]);
+                            }
+                            else
+                            {
+                                for (int i = 0; i < 5; i++)
+                                {
+                                    for (int j = 0; j < 5; j++)
+                                    {
+                                        if (Bnumber[i] == NewNumber[j])
+                                        {
+                                            number[Convert.ToInt32(sqlr["Number1"]) - 1] += 1;
+                                            number[Convert.ToInt32(sqlr["Number2"]) - 1] += 1;
+                                            number[Convert.ToInt32(sqlr["Number3"]) - 1] += 1;
+                                            number[Convert.ToInt32(sqlr["Number4"]) - 1] += 1;
+                                            number[Convert.ToInt32(sqlr["Number5"]) - 1] += 1;
+                                        }
+                                    }
+                                }
+                               
+                                Bnumber[0] = Convert.ToInt32(sqlr["Number1"]);
+                                Bnumber[1] = Convert.ToInt32(sqlr["Number2"]);
+                                Bnumber[2] = Convert.ToInt32(sqlr["Number3"]);
+                                Bnumber[3] = Convert.ToInt32(sqlr["Number4"]);
+                                Bnumber[4] = Convert.ToInt32(sqlr["Number5"]);
+                            }
+
+                        }
+                    }
+                }str = "Select TOP(15)* from[" + EditXml.strSettingDBName + "].[dbo].[tMe] order by [Date] desc ";
+                using (var sqlcmd = new SqlCommand(str, m_sqlConn))
+                {
+                    using (var sqlr = sqlcmd.ExecuteReader())
+                    {
+                        int[] Bnumber = new int[5];
+                        while (sqlr.Read())
+                        {
+                            number[Convert.ToInt32(sqlr["Number1"]) - 1] += 2;
+                            number[Convert.ToInt32(sqlr["Number2"]) - 1] += 2;
+                            number[Convert.ToInt32(sqlr["Number3"]) - 1] += 2;
+                            number[Convert.ToInt32(sqlr["Number4"]) - 1] += 2;
+                            number[Convert.ToInt32(sqlr["Number5"]) - 1] += 2;
+                        }
+                    }
+                }
+            }
+
+            decimal top1, top2;
+            top1 = top2 = 0;
+            for (int j = 0; j < 39; j++)
+            {
+                if (top1 < number[j])
+                    top1 = number[j];
+            }
+            for (int j = 0; j < 39; j++)
+            {
+                if (top1 != number[j])
+                {
+                    if (top2 < number[j])
+                        top2 = number[j];
+                }
+            }
+            string s = string.Empty;
+            for (int j = 0; j < 39; j++)
+            {
+                if (top2 == number[j] || top1 == number[j])
+                {
+                    s += (j + 1).ToString()+" , ";
+                }
+                  
+            }
+            label1.Text = s;
         }
         private void cloerHMV()
         {

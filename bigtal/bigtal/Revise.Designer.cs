@@ -46,14 +46,24 @@
             this.btnUpdata = new System.Windows.Forms.Button();
             this.btnInsert = new System.Windows.Forms.Button();
             this.dgvData = new System.Windows.Forms.DataGridView();
+            this.NUD1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown3 = new System.Windows.Forms.NumericUpDown();
+            this.numericUpDown4 = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).BeginInit();
             this.SuspendLayout();
             // 
             // textRevise
             // 
             this.textRevise.AutoSize = true;
             this.textRevise.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.textRevise.Location = new System.Drawing.Point(300, 14);
+            this.textRevise.Location = new System.Drawing.Point(280, 14);
             this.textRevise.Name = "textRevise";
             this.textRevise.Size = new System.Drawing.Size(42, 21);
             this.textRevise.TabIndex = 0;
@@ -86,35 +96,35 @@
             // 
             // textNum1
             // 
-            this.textNum1.Location = new System.Drawing.Point(24, 131);
+            this.textNum1.Location = new System.Drawing.Point(24, 13);
             this.textNum1.Name = "textNum1";
             this.textNum1.Size = new System.Drawing.Size(100, 22);
             this.textNum1.TabIndex = 5;
             // 
             // textNum2
             // 
-            this.textNum2.Location = new System.Drawing.Point(143, 131);
+            this.textNum2.Location = new System.Drawing.Point(130, 13);
             this.textNum2.Name = "textNum2";
             this.textNum2.Size = new System.Drawing.Size(100, 22);
             this.textNum2.TabIndex = 6;
             // 
             // textNum3
             // 
-            this.textNum3.Location = new System.Drawing.Point(259, 131);
+            this.textNum3.Location = new System.Drawing.Point(328, 17);
             this.textNum3.Name = "textNum3";
             this.textNum3.Size = new System.Drawing.Size(100, 22);
             this.textNum3.TabIndex = 7;
             // 
             // textNum4
             // 
-            this.textNum4.Location = new System.Drawing.Point(374, 131);
+            this.textNum4.Location = new System.Drawing.Point(434, 17);
             this.textNum4.Name = "textNum4";
             this.textNum4.Size = new System.Drawing.Size(100, 22);
             this.textNum4.TabIndex = 8;
             // 
             // textNum5
             // 
-            this.textNum5.Location = new System.Drawing.Point(493, 131);
+            this.textNum5.Location = new System.Drawing.Point(434, 45);
             this.textNum5.Name = "textNum5";
             this.textNum5.Size = new System.Drawing.Size(100, 22);
             this.textNum5.TabIndex = 9;
@@ -201,10 +211,125 @@
             this.dgvData.TabIndex = 18;
             this.dgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvData_CellClick);
             // 
+            // NUD1
+            // 
+            this.NUD1.Location = new System.Drawing.Point(26, 132);
+            this.NUD1.Maximum = new decimal(new int[] {
+            39,
+            0,
+            0,
+            0});
+            this.NUD1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.NUD1.Name = "NUD1";
+            this.NUD1.Size = new System.Drawing.Size(98, 22);
+            this.NUD1.TabIndex = 19;
+            this.NUD1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown1
+            // 
+            this.numericUpDown1.Location = new System.Drawing.Point(145, 132);
+            this.numericUpDown1.Maximum = new decimal(new int[] {
+            39,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown1.Name = "numericUpDown1";
+            this.numericUpDown1.Size = new System.Drawing.Size(98, 22);
+            this.numericUpDown1.TabIndex = 20;
+            this.numericUpDown1.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown2
+            // 
+            this.numericUpDown2.Location = new System.Drawing.Point(261, 132);
+            this.numericUpDown2.Maximum = new decimal(new int[] {
+            39,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown2.Name = "numericUpDown2";
+            this.numericUpDown2.Size = new System.Drawing.Size(98, 22);
+            this.numericUpDown2.TabIndex = 21;
+            this.numericUpDown2.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown3
+            // 
+            this.numericUpDown3.Location = new System.Drawing.Point(376, 132);
+            this.numericUpDown3.Maximum = new decimal(new int[] {
+            39,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown3.Name = "numericUpDown3";
+            this.numericUpDown3.Size = new System.Drawing.Size(98, 22);
+            this.numericUpDown3.TabIndex = 22;
+            this.numericUpDown3.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // numericUpDown4
+            // 
+            this.numericUpDown4.Location = new System.Drawing.Point(495, 132);
+            this.numericUpDown4.Maximum = new decimal(new int[] {
+            39,
+            0,
+            0,
+            0});
+            this.numericUpDown4.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDown4.Name = "numericUpDown4";
+            this.numericUpDown4.Size = new System.Drawing.Size(98, 22);
+            this.numericUpDown4.TabIndex = 23;
+            this.numericUpDown4.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
             // Revise
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.numericUpDown4);
+            this.Controls.Add(this.numericUpDown3);
+            this.Controls.Add(this.numericUpDown2);
+            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.NUD1);
             this.Controls.Add(this.dgvData);
             this.Controls.Add(this.btnInsert);
             this.Controls.Add(this.btnUpdata);
@@ -224,9 +349,14 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textRevise);
             this.Name = "Revise";
-            this.Size = new System.Drawing.Size(603, 426);
+            this.Size = new System.Drawing.Size(600, 420);
             this.Load += new System.EventHandler(this.Revise_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.NUD1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown4)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -252,5 +382,10 @@
         private System.Windows.Forms.Button btnUpdata;
         private System.Windows.Forms.Button btnInsert;
         private System.Windows.Forms.DataGridView dgvData;
+        private System.Windows.Forms.NumericUpDown NUD1;
+        private System.Windows.Forms.NumericUpDown numericUpDown1;
+        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.NumericUpDown numericUpDown3;
+        private System.Windows.Forms.NumericUpDown numericUpDown4;
     }
 }

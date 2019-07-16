@@ -33,7 +33,6 @@
             this.rdoSearch = new System.Windows.Forms.RadioButton();
             this.btnOK = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.rdoPrediction2 = new System.Windows.Forms.RadioButton();
             this.radioButton1 = new System.Windows.Forms.RadioButton();
             this.SuspendLayout();
@@ -88,21 +87,6 @@
             this.panel1.Size = new System.Drawing.Size(960, 541);
             this.panel1.TabIndex = 4;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "539",
-            "威力彩",
-            "大福彩",
-            "大樂透",
-            "六合彩"});
-            this.comboBox1.Location = new System.Drawing.Point(252, 30);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(140, 21);
-            this.comboBox1.TabIndex = 5;
-            this.comboBox1.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
-            // 
             // rdoPrediction2
             // 
             this.rdoPrediction2.AutoSize = true;
@@ -132,15 +116,17 @@
             this.ClientSize = new System.Drawing.Size(1002, 632);
             this.Controls.Add(this.radioButton1);
             this.Controls.Add(this.rdoPrediction2);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.rdoSearch);
             this.Controls.Add(this.rdoPrediction);
             this.Controls.Add(this.rdoRevise);
             this.Font = new System.Drawing.Font("新細明體", 9.75F);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "frmMain";
-            this.Text = "frmMain";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Main";
             this.Load += new System.EventHandler(this.frmMain_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -154,7 +140,6 @@
         private System.Windows.Forms.RadioButton rdoSearch;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.RadioButton rdoPrediction2;
         private System.Windows.Forms.RadioButton radioButton1;
     }
