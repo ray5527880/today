@@ -65,9 +65,10 @@ namespace Lottery_1
             if (rdoL539.Checked)
             {
                 var frm = new History(GType.L539);
+                frm.m539 = m539;
                 if (userName != string.Empty)
                 {
-                    this.Controls.RemoveByKey(userName);
+                    this.Controls.RemoveByKey(userName);                    
                     userName = frm.Name;
                 }
                 this.Controls.Add(frm);
@@ -83,6 +84,7 @@ namespace Lottery_1
                 if (userName != string.Empty)
                 {
                     this.Controls.RemoveByKey(userName);
+                    frm.m539 = m539;
                     userName = frm.Name;
                 }
 

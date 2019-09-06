@@ -13,10 +13,13 @@ namespace Lottery_1
     {
         private GType _Type;
 
+        public List<Number.Number_539> m539 { get; set; }
+
         public History(GType _type)
         {
             InitializeComponent();
             _Type = _type;
+            m539 = new List<Number.Number_539>();
         }
 
         private void UserControl1_Load(object sender, EventArgs e)
@@ -43,9 +46,42 @@ namespace Lottery_1
             dgView.Columns[3].Width = 70;
             dgView.Columns[4].Width = 70;
             dgView.Columns[5].Width = 70;
-            dgView.Columns[6].Width = 70;
+            dgView.Columns[6].Width = 70; 
             dgView.Width = 600;
             dgView.Height = 290;
+            updataDGview();
+        }
+        private void updataDGview()
+        {
+            switch (_Type)
+            {
+                case GType.L539:
+                    updataDGview_539();
+                    break;
+            }
+        }
+        private void updataDGview_539()
+        {
+            foreach (var item in m539)
+            {
+                string[] str = new string[] { item.Date.ToString("yyyy-MM-dd"), item.No.ToString(), item.n_1.ToString(), item.n_2.ToString(), item.n_3.ToString(), item.n_4.ToString(), item.n_5.ToString() };
+                dgView.Rows.Add(str);
+            }
+        }        
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
