@@ -32,8 +32,8 @@ namespace Lottery_1
 
         private void Lottery_Load(object sender, EventArgs e)
         {
-            XML _xml = new XML();
-            m539 = _xml.GetXML_539("./L539.xml");
+            //XML _xml = new XML();
+            //m539 = _xml.GetXML_539("./L539.xml");
 
 
             List<test> t = new List<test>();

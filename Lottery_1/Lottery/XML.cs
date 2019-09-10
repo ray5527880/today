@@ -16,5 +16,9 @@ namespace Lottery
         {
             return this.dao.GetXML_539(path);
         }
+        public StatusType InsertData_539(Number.Number_539 m539, string path)
+        {
+            return this.dao.InsertData_539(m539, path);
+        }
     }
 }

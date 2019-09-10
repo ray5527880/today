@@ -15,8 +15,6 @@ namespace Lottery
         public List<Number.Number_539> GetXML_539(string path)
         {
             List<Number.Number_539> m539 = new List<Number.Number_539>();
-            //string m_strXmlFile = this.GetType().Assembly.Location;
-            //m_strXmlFile = m_strXmlFile.Replace("Lottery_1.exe", "L539.xml");
             XElement xmlE = XElement.Load(path);
 
             foreach (var _xmlE in xmlE.Elements("data"))
@@ -35,7 +33,25 @@ namespace Lottery
             }
             
             return m539;
-
+        }
+        public StatusType InsertData_539(Number.Number_539 m539,string path)
+        {
+            try
+            {
+                XElement xmlE = XElement.Load(path);
+                XElement _XmlE = new XElement("data",
+                    new XElement("no",m539.No),
+                    new XElement("date",m539.Date),
+                    new XElement("n1",m539.n_1),
+                    new XElement("n2",m539.n_2),
+                    new XElement("n3",m539.n_3),
+                    new XElement("n4",m539.n_4),
+                    new XElement("n5",m539.n_5));
+                xmlE.Add(_XmlE);
+                xmlE.Save(path);
+                return StatusType.Ok;
+            }
+            catch { return StatusType.Error; }
         }
     }
 }

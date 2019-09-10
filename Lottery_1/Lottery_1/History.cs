@@ -13,6 +13,8 @@ namespace Lottery_1
     {
         private GType _Type;
 
+        private XML mXML;
+
         public List<Number.Number_539> m539 { get; set; }
 
         public History(GType _type)
@@ -24,10 +26,11 @@ namespace Lottery_1
 
         private void UserControl1_Load(object sender, EventArgs e)
         {
+            mXML = new XML();
             if (_Type == GType.L539)
             {
                 SetL539View();
-            }
+            }            
         }
 
         private void SetL539View()
@@ -60,20 +63,44 @@ namespace Lottery_1
                     break;
             }
         }
+        private void AddData()
+        {
+            switch (_Type)
+            {
+                case GType.L539:
+                    AddData_539();
+                    break;
+            }
+        }
         private void updataDGview_539()
         {
+            m539 = new List<Number.Number_539>();
+            m539 = mXML.GetXML_539("./L539.xml");
+
             foreach (var item in m539)
             {
                 string[] str = new string[] { item.Date.ToString("yyyy-MM-dd"), item.No.ToString(), item.n_1.ToString(), item.n_2.ToString(), item.n_3.ToString(), item.n_4.ToString(), item.n_5.ToString() };
                 dgView.Rows.Add(str);
             }
-        }        
-
+        }
+        private void AddData_539()
+        {
+            Number.Number_539 m539 = new Number.Number_539();
+            m539.No = Convert.ToInt32(txtNo.Text);
+            m539.Date = dtpDate.Value;
+            m539.n_1 = Convert.ToInt32(nud_n1.Value);
+            m539.n_2 = Convert.ToInt32(nud_n2.Value);
+            m539.n_3 = Convert.ToInt32(nud_n3.Value);
+            m539.n_4 = Convert.ToInt32(nud_n4.Value);
+            m539.n_5 = Convert.ToInt32(nud_n5.Value);
+            string str = mXML.InsertData_539(m539, "./L539.xml") == StatusType.Ok ? "成功" : "失敗";
+            MessageBox.Show(str);
+        }
         private void button1_Click(object sender, EventArgs e)
         {
-
+            AddData();
         }
-
+        
         private void button2_Click(object sender, EventArgs e)
         {
 
@@ -81,6 +108,13 @@ namespace Lottery_1
 
         private void button3_Click(object sender, EventArgs e)
         {
+            (sender as Button).Enabled = false;
+            if (this.openExcelFile.ShowDialog() != DialogResult.OK)
+            {
+                (sender as Button).Enabled = true;
+                return;
+            }
+            this.Enabled = false;
 
         }
     }

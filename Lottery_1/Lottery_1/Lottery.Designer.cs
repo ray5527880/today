@@ -73,7 +73,8 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.rdoL539);
             this.Font = new System.Drawing.Font("新細明體", 11F);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
             this.Name = "Lottery";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Lottery";

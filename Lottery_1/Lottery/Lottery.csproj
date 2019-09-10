@@ -43,6 +43,7 @@
     <Compile Include="GameType.cs" />
     <Compile Include="Number.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatusType.cs" />
     <Compile Include="XML.cs" />
     <Compile Include="XMLDao.cs" />
   </ItemGroup>
