@@ -41,13 +41,41 @@ namespace Lottery
                 XElement xmlE = XElement.Load(path);
                 XElement _XmlE = new XElement("data",
                     new XElement("no",m539.No),
-                    new XElement("date",m539.Date),
+                    new XElement("date",m539.Date.ToString("yyyy/MM/dd")),
                     new XElement("n1",m539.n_1),
                     new XElement("n2",m539.n_2),
                     new XElement("n3",m539.n_3),
                     new XElement("n4",m539.n_4),
                     new XElement("n5",m539.n_5));
                 xmlE.Add(_XmlE);
+                xmlE.Save(path);
+                return StatusType.Ok;
+            }
+            catch { return StatusType.Error; }
+        }
+        public StatusType UpData_539(Number.Number_539 m539,int B_No ,string path)
+        {
+            try
+            {
+                XElement xmlE = XElement.Load(path);
+                
+                XElement _XmlE = new XElement("data",
+                    new XElement("no", m539.No),
+                    new XElement("date", m539.Date.ToString("yyyy/MM/dd")),
+                    new XElement("n1", m539.n_1),
+                    new XElement("n2", m539.n_2),
+                    new XElement("n3", m539.n_3),
+                    new XElement("n4", m539.n_4),
+                    new XElement("n5", m539.n_5));
+                foreach (var item in xmlE.Elements("data"))
+                {
+                    if (B_No == Convert.ToInt32(item.Element("no").Value))
+                    {
+                        item.Remove();
+                        xmlE.Add(_XmlE);
+                        break;
+                    }
+                }
                 xmlE.Save(path);
                 return StatusType.Ok;
             }

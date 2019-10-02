@@ -64,6 +64,7 @@
             this.dgView.RowTemplate.Height = 24;
             this.dgView.Size = new System.Drawing.Size(824, 542);
             this.dgView.TabIndex = 0;
+            this.dgView.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgView_CellClick);
             // 
             // nud_n1
             // 
