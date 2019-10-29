@@ -14,12 +14,12 @@ namespace Lottery
 
         private XML _XML;
 
-        public StatusType Load_539(string paht)
+        public StatusType Load_539(string path)
         {
             Application excel = new Application();
             excel.Visible = false;
 
-            Workbook workbook = excel.Workbooks.Open(paht);
+            Workbook workbook = excel.Workbooks.Open(path);
             Worksheet sheet = workbook.Sheets[1];
             Range range = sheet.UsedRange;
 
@@ -33,12 +33,12 @@ namespace Lottery
                 for (int rowIndex = 0; rowIndex < rowCount; rowIndex++)
                 {
                     this.mNumber[rowIndex].No = Convert.ToInt32(range[rowIndex + 2, 1].Cells.Text);
-                    this.mNumber[rowIndex].Date = Convert.ToDateTime(range[rowIndex + 2, 3].Cells.Text);
-                    this.mNumber[rowIndex].n_1 = Convert.ToDateTime(range[rowIndex + 2, 4].Cells.Text);
-                    this.mNumber[rowIndex].n_2 = Convert.ToDateTime(range[rowIndex + 2, 5].Cells.Text);
-                    this.mNumber[rowIndex].n_3 = Convert.ToDateTime(range[rowIndex + 2, 6].Cells.Text);
-                    this.mNumber[rowIndex].n_4 = Convert.ToDateTime(range[rowIndex + 2, 7].Cells.Text);
-                    this.mNumber[rowIndex].n_5 = Convert.ToDateTime(range[rowIndex + 2, 8].Cells.Text);
+                    this.mNumber[rowIndex].Date = Convert.ToDateTime(range[rowIndex + 2, 2].Cells.Text);
+                    this.mNumber[rowIndex].n_1 = Convert.ToInt32(range[rowIndex + 2, 3].Cells.Text);
+                    this.mNumber[rowIndex].n_2 = Convert.ToInt32(range[rowIndex + 2, 4].Cells.Text);
+                    this.mNumber[rowIndex].n_3 = Convert.ToInt32(range[rowIndex + 2, 5].Cells.Text);
+                    this.mNumber[rowIndex].n_4 = Convert.ToInt32(range[rowIndex + 2, 6].Cells.Text);
+                    this.mNumber[rowIndex].n_5 = Convert.ToInt32(range[rowIndex + 2, 7].Cells.Text);
                 }
             }
             finally
@@ -64,8 +64,21 @@ namespace Lottery
             }
             return StatusType.Ok;
         }
-        public StatusType Insert_539()
-        {
+        public StatusType Insert_539(XML xml)
+        {            
+            foreach (var item in mNumber)
+            {
+                Number.Number_539 m539 = new Number.Number_539();
+                m539.No = item.No;
+                m539.Date = item.Date;
+                m539.n_1 = item.n_1;
+                m539.n_2 = item.n_2;
+                m539.n_3 = item.n_3;
+                m539.n_4 = item.n_4;
+                m539.n_5 = item.n_5;
+                xml.InsertData_539(m539, "./L539.xml");
+            }
+           
             return StatusType.Ok;
         }
     }

@@ -21,10 +21,11 @@ namespace Lottery
             else
                 return StatusType.Error;
         }
-        public StatusType Insert()
+
+        public StatusType Insert(XML xml)
         {
             if (GT == GType.L539)
-                return Insert_539();
+                return Insert_539(xml);
             else
                 return StatusType.Ok;
         }
@@ -32,9 +33,9 @@ namespace Lottery
         {
             return dao.Load_539(path);
         }
-        private StatusType Insert_539()
+        private StatusType Insert_539(XML xml)
         {
-            return dao.Insert_539();
+            return dao.Insert_539(xml);
         }
     }
 }

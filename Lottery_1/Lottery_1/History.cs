@@ -153,7 +153,14 @@ namespace Lottery_1
 
             var _ImportExcel = new ImPortExcel(_Type);
             Task.Factory.StartNew(() => { _ImportExcel.Load(this.openExcelFile.FileName); })
-                .ContinueWith(antecedent => { });
+                .ContinueWith(antecedent =>
+                {
+                    _ImportExcel.Insert(mXML);
+                })
+                .ContinueWith(antecedent =>
+                {
+                    (sender as Button).Enabled = true;
+                });
 
             this.Enabled = false;
         }

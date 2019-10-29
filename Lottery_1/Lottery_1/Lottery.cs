@@ -34,41 +34,22 @@ namespace Lottery_1
         {
             //XML _xml = new XML();
             //m539 = _xml.GetXML_539("./L539.xml");
-
-
-            List<test> t = new List<test>();
-            for (int i = 1; i < 5; i++)
-            {
-                var tt = new test();
-                tt.no = i;
-                tt.no1 = i * 1;
-                tt.no2 = i + i;
-                t.Add(tt);
-            }
-            var x = from data in t
-                    orderby data.no descending
-                    select data;
-
-            
-            var item = x.GetEnumerator();
-            while (item.MoveNext())
-            {
-                //item.Current.no;
-            }
-            int s = 0;
-
-
         }
 
         private void button1_Click(object sender, EventArgs e)
         {
             if (rdoL539.Checked)
             {
+
                 var frm = new History(GType.L539);
                 frm.m539 = m539;
                 if (userName != string.Empty)
                 {
-                    this.Controls.RemoveByKey(userName);                    
+                    this.Controls.RemoveByKey(userName);
+                    userName = frm.Name;
+                }
+                else
+                {
                     userName = frm.Name;
                 }
                 this.Controls.Add(frm);
@@ -80,14 +61,18 @@ namespace Lottery_1
         {
             if (rdoL539.Checked)
             {
-                var frm = new History(GType.L539);
+                var frm = new Fall(GType.L539);
                 if (userName != string.Empty)
                 {
                     this.Controls.RemoveByKey(userName);
-                    frm.m539 = m539;
+                    //frm.m539 = m539;
                     userName = frm.Name;
                 }
-
+                else
+                {
+                    userName = frm.Name;
+                }
+                this.Controls.Add(frm);
                 frm.Location = new Point(10, 80);
             }
         }

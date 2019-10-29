@@ -50,6 +50,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fall.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Fall.Designer.cs">
+      <DependentUpon>Fall.cs</DependentUpon>
+    </Compile>
     <Compile Include="Lottery.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -64,6 +70,9 @@
     <Compile Include="History.Designer.cs">
       <DependentUpon>History.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Fall.resx">
+      <DependentUpon>Fall.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Lottery.resx">
       <DependentUpon>Lottery.cs</DependentUpon>
     </EmbeddedResource>
