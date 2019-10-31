@@ -29,7 +29,11 @@ namespace bigtal
             getTwoNunber();
             int i = 0;
         }
-
+        public struct number10
+        {
+            public string no { get; set; }
+            public decimal value { get; set; }
+        }
         private void getTwoNunber()
         {
             decimal[] topArr = new decimal[39];
@@ -72,12 +76,13 @@ namespace bigtal
                                 Bnumber[2] = Convert.ToInt32(sqlr["Number3"]);
                                 Bnumber[3] = Convert.ToInt32(sqlr["Number4"]);
                                 Bnumber[4] = Convert.ToInt32(sqlr["Number5"]);
+                                var ss = sqlr["Date"];
                                 startOn = false;
                             }
                             else
                             {
-                                for (int i = 0; i < 5; i++)
-                                {
+                                //for (int i = 0; i < 5; i++)
+                                //{
                                     for (int j = 0; j < 5; j++)
                                     {
                                         if (Convert.ToInt32(sqlr["Number1"]) == NewNumber[j])
@@ -87,8 +92,34 @@ namespace bigtal
                                                 number[Bnumber[ii] - 1] += 1;
                                             }
                                         }
-
-
+                                        else if (Convert.ToInt32(sqlr["Number2"]) == NewNumber[j])
+                                        {
+                                            for (int ii = 0; ii < 5; ii++)
+                                            {
+                                                number[Bnumber[ii] - 1] += 1;
+                                            }
+                                        }
+                                        else if (Convert.ToInt32(sqlr["Number3"]) == NewNumber[j])
+                                        {
+                                            for (int ii = 0; ii < 5; ii++)
+                                            {
+                                                number[Bnumber[ii] - 1] += 1;
+                                            }
+                                        }
+                                        else if (Convert.ToInt32(sqlr["Number4"]) == NewNumber[j])
+                                        {
+                                            for (int ii = 0; ii < 5; ii++)
+                                            {
+                                                number[Bnumber[ii] - 1] += 1;
+                                            }
+                                        }
+                                        else if (Convert.ToInt32(sqlr["Number5"]) == NewNumber[j])
+                                        {
+                                            for (int ii = 0; ii < 5; ii++)
+                                            {
+                                                number[Bnumber[ii] - 1] += 1;
+                                            }
+                                        }
 
                                         //if (Bnumber[i] == NewNumber[j])
                                         //{
@@ -99,7 +130,7 @@ namespace bigtal
                                         //    number[Convert.ToInt32(sqlr["Number5"]) - 1] += 1;
                                         //}
                                     }
-                                }
+                                //}
                                
                                 Bnumber[0] = Convert.ToInt32(sqlr["Number1"]);
                                 Bnumber[1] = Convert.ToInt32(sqlr["Number2"]);
@@ -206,7 +237,7 @@ namespace bigtal
                 //{
                 //    decH[i] = top10H[i] + topArr[i] * 2 / 39;
                 //}
-
+                number10[] no10 = new number10[9];
                 str = "Select TOP(15)* from[" + EditXml.strSettingDBName + "].[dbo].[tMe] order by [Date] desc ";
                 using (var sqlcmd = new SqlCommand(str, m_sqlConn))
                 {
@@ -215,6 +246,26 @@ namespace bigtal
                         int[] Bnumber = new int[5];
                         while (sqlr.Read())
                         {
+                            if (Convert.ToInt32(sqlr["Number1"]) % 10 != 0)
+                            {
+                                no10[Convert.ToInt32(sqlr["Number1"]) % 10 - 1].value++;
+                            }
+                            if (Convert.ToInt32(sqlr["Number2"]) % 10 != 0)
+                            {
+                                no10[Convert.ToInt32(sqlr["Number2"]) % 10 - 1].value++;
+                            }
+                            if (Convert.ToInt32(sqlr["Number3"]) % 10 != 0)
+                            {
+                                no10[Convert.ToInt32(sqlr["Number3"]) % 10 - 1].value++;
+                            }
+                            if (Convert.ToInt32(sqlr["Number4"]) % 10 != 0)
+                            {
+                                no10[Convert.ToInt32(sqlr["Number4"]) % 10 - 1].value++;
+                            }
+                            if (Convert.ToInt32(sqlr["Number5"]) % 10 != 0)
+                            {
+                                no10[Convert.ToInt32(sqlr["Number5"]) % 10 - 1].value++;
+                            }
                             for (int i = 0; i < 13; i++)
                             {
                                 if (Convert.ToInt32(sqlr["Number1"]) == top13[i])
@@ -238,11 +289,6 @@ namespace bigtal
                                     top13H[i]++;
                                 }
                             }
-                            //number[Convert.ToInt32(sqlr["Number1"]) - 1] += 2;
-                            //number[Convert.ToInt32(sqlr["Number2"]) - 1] += 2;
-                            //number[Convert.ToInt32(sqlr["Number3"]) - 1] += 2;
-                            //number[Convert.ToInt32(sqlr["Number4"]) - 1] += 2;
-                            //number[Convert.ToInt32(sqlr["Number5"]) - 1] += 2;
                         }
                     }
                 }
@@ -279,6 +325,22 @@ namespace bigtal
                 //    }
 
                 //}
+
+                string s2 = string.Empty;
+                for (int i = 0; i < 9; i++)
+                {
+                    no10[i].no = (i + 1).ToString();
+                }
+                for (int i = 0; i < 39; i++)
+                {
+                    if ((i + 1) % 10 != 0)
+                        no10[(i + 1) % 10-1].value += number[i];
+                }
+                foreach (var x in no10.OrderByDescending(e => e.value))
+                {
+                    s2 += x.no + " , ";
+                }
+
                 for (int j = 0; j < 13; j++)
                 {
                     if (top1 < top13H[j])
@@ -293,14 +355,16 @@ namespace bigtal
                     }
                 }
                 string s = string.Empty;
-                //for (int j = 0; j < 13; j++)
-                //{
-                //    if (top1 == top13H[j])
-                //    {
-                //        s += top13[j].ToString() + " , ";
-                //    }
+                string s1 = string.Empty;
+               
+                for (int j = 0; j < 13; j++)
+                {
+                    if (top1 == top13H[j])
+                    {
+                        s1 += top13[j].ToString() + " , ";
+                    }
 
-                //}
+                }
                 for (int j = 0; j < 13; j++)
                 {
                     if (top2 == top13H[j])
@@ -309,7 +373,10 @@ namespace bigtal
                     }
 
                 }
+          
                 label1.Text = s;
+                label2.Text = s1;
+                label3.Text = s2;
             }
 
             //decimal top1, top2;

@@ -46,6 +46,8 @@
     <Compile Include="GameType.cs" />
     <Compile Include="ImPortExcel.cs" />
     <Compile Include="ImPortExcelDao.cs" />
+    <Compile Include="LotteryMathDao.cs" />
+    <Compile Include="LotteryMath.cs" />
     <Compile Include="Number.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatusType.cs" />

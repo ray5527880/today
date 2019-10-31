@@ -15,6 +15,8 @@ namespace Lottery_1
     {
         private GType _Type;
         private List<Number.Number_539> List539;
+        private LotteryMath LMath;
+
         public Fall(GType gType)
         {
             _Type = gType;
@@ -28,6 +30,7 @@ namespace Lottery_1
                 var mXML = new XML();
                 List539 = new List<Number.Number_539>();
                 List539 = mXML.GetXML_539("./L539.xml");
+                LMath = new LotteryMath();
                 SetL539View();
             }        
         }
@@ -57,15 +60,31 @@ namespace Lottery_1
                 str[item.n_4] = item.n_4.ToString("00");
                 str[item.n_5] = item.n_5.ToString("00");
                 dataGridView1.Rows.Add(str);
-                dataGridView1.Rows[count].Cells[item.n_1].Style.
+                dataGridView1.Rows[count].Cells[item.n_1].Style.BackColor = Color.Yellow;
+                dataGridView1.Rows[count].Cells[item.n_2].Style.BackColor = Color.Yellow;
+                dataGridView1.Rows[count].Cells[item.n_3].Style.BackColor = Color.Yellow;
+                dataGridView1.Rows[count].Cells[item.n_4].Style.BackColor = Color.Yellow;
+                dataGridView1.Rows[count].Cells[item.n_5].Style.BackColor = Color.Yellow;
+                count++;
             }
-            foreach (var item in dataGridView1.Rows)
+            string[] _str = new string[40];
+            _str[0] = "合計";
+            for (int i = 1; i < 40; i++)
             {
-                for (int i = 1; i < 40; i++)
-                {
-                    
-                }
+                _str[i] = (LMath.Sum(m539, i)).ToString("00") ;
             }
+            dataGridView1.Rows.Add(_str);
+            for (int i = 0; i < 40; i++)
+            {
+                dataGridView1.Rows[count].Cells[i].Style.BackColor = Color.GreenYellow;
+            }
+            
+        }
+        private int sum_539(List<Number.Number_539> m539, int No)
+        {
+            int reNumber = 0;
+
+            return reNumber;
         }
         private void button1_Click(object sender, EventArgs e)
         {

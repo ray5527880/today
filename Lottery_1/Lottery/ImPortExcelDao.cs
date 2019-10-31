@@ -8,7 +8,7 @@ using Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
 namespace Lottery
 {
-    public class ImPortExcelDao
+    class ImPortExcelDao
     {
         private Number.Number_539[] mNumber;
 
