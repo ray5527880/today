@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Lottery
 {
-     class LotteryMathDao
+    class LotteryMathDao
     {
         public int sum_539(List<Number.Number_539> m539, int No)
         {
@@ -24,6 +24,56 @@ namespace Lottery
                     reNumber++;
             }
             return reNumber;
+        }
+        public List<NumberStruct.EndNumber> GetEndNumber(List<Number.Number_539> m539)
+        {
+            List<NumberStruct.EndNumber> endList = new List<NumberStruct.EndNumber>();
+            for (int i = 1; i < 10; i++)
+            {
+                NumberStruct.EndNumber _endNumber = new NumberStruct.EndNumber();
+                _endNumber.No = i;
+                foreach (var item in m539)
+                {
+                    if (item.n_1 % 10 == i)
+                        _endNumber.count++;
+                    else if (item.n_2 % 10 == i)
+                        _endNumber.count++;
+                    else if (item.n_3 % 10 == i)
+                        _endNumber.count++;
+                    else if (item.n_4 % 10 == i)
+                        _endNumber.count++;
+                    else if (item.n_5 % 10 == i)
+                        _endNumber.count++;
+                }
+                endList.Add(_endNumber);
+            }
+            return endList;
+        }
+        public List<Number.Number_539> GetTOPList(List<Number.Number_539> m539, int limit)
+        {
+            int count = 0;
+            List<Number.Number_539> _539 = new List<Number.Number_539>();
+            foreach (var item in m539.OrderByDescending(e=>e.Date))
+            {
+                _539.Add(item);
+                count++;
+                if (count == limit)
+                    break;                
+            }
+            return _539;
+        }
+        public List<Number.Number_539> GetTOPList(List<Number.Number_539> m539,int EndNo, int limit)
+        {
+            int count = 0;
+            List<Number.Number_539> _539 = new List<Number.Number_539>();
+            foreach (var item in m539.Where(e=>e.No<=EndNo).OrderByDescending(e => e.Date))
+            {
+                _539.Add(item);
+                count++;
+                if (count == limit)
+                    break;
+            }
+            return _539;
         }
     }
 }

@@ -49,6 +49,7 @@
     <Compile Include="LotteryMathDao.cs" />
     <Compile Include="LotteryMath.cs" />
     <Compile Include="Number.cs" />
+    <Compile Include="NumberStruct.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StatusType.cs" />
     <Compile Include="XML.cs" />

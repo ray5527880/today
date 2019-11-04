@@ -76,5 +76,25 @@ namespace Lottery_1
                 frm.Location = new Point(10, 80);
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (rdoL539.Checked)
+            {
+                var frm = new Prediction(GType.L539);
+                if (userName != string.Empty)
+                {
+                    this.Controls.RemoveByKey(userName);
+                    //frm.m539 = m539;
+                    userName = frm.Name;
+                }
+                else
+                {
+                    userName = frm.Name;
+                }
+                this.Controls.Add(frm);
+                frm.Location = new Point(10, 80);
+            }
+        }
     }
 }

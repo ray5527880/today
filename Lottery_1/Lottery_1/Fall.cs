@@ -74,9 +74,13 @@ namespace Lottery_1
                 _str[i] = (LMath.Sum(m539, i)).ToString("00") ;
             }
             dataGridView1.Rows.Add(_str);
-            for (int i = 0; i < 40; i++)
-            {
-                dataGridView1.Rows[count].Cells[i].Style.BackColor = Color.GreenYellow;
+            dataGridView1.Rows[count].Cells[0].Style.BackColor = Color.GreenYellow;
+            for (int i = 1; i < 40; i++)
+            {                
+                if (Convert.ToInt32(dataGridView1.Rows[count].Cells[i].Value) > 3)
+                    dataGridView1.Rows[count].Cells[i].Style.BackColor = Color.OrangeRed;
+                else
+                    dataGridView1.Rows[count].Cells[i].Style.BackColor = Color.GreenYellow;
             }
             
         }
@@ -88,23 +92,66 @@ namespace Lottery_1
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            //var list=new List<
             switch (_Type)
             {
                 case GType.L539:
-                    View20_539();
+                    View_539(20);
                     break;
             }
         }
-        private void View20_539()
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            switch (_Type)
+            {
+                case GType.L539:
+                    View_539(30);
+                    break;
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            switch (_Type)
+            {
+                case GType.L539:
+                    View_539(50);
+                    break;
+            }
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            switch (_Type)
+            {
+                case GType.L539:
+                    View_539(dateTimePicker1.Value, Convert.ToInt32(numericUpDown1.Value));
+                    break;
+            }
+        }
+
+        private void View_539(int limet)
         {
             int count = 0;
-            var _539=new List<Number.Number_539>();
+            var _539 = new List<Number.Number_539>();
             foreach (var item in List539.OrderByDescending(e => e.Date))
             {
                 _539.Add(item);
                 count++;
-                if (count == 20)
+                if (count == limet)                   
+                    break;
+            }
+            updataDGview_539(_539);
+        }
+        private void View_539(DateTime time, int limet)
+        {
+            int count = 0;
+            var _539 = new List<Number.Number_539>();
+            foreach (var item in List539.Where(e => e.Date <= time).OrderByDescending(e => e.Date))
+            {
+                _539.Add(item);
+                count++;
+                if (count == limet)
                     break;
             }
             updataDGview_539(_539);
