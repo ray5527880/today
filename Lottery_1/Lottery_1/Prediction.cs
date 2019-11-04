@@ -48,7 +48,7 @@ namespace Lottery_1
             //{
             //    EndNumber(maxNo - 6 * i);
             //}
-            EndNumber(maxNo-12);
+            EndNumber(maxNo-18);
         }
         private void EndNumber(int limetNo)
         {
