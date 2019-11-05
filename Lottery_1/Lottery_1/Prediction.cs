@@ -17,11 +17,11 @@ namespace Lottery_1
         private List<Number.Number_539> List539;
         private LotteryMath LMath;
         private int maxNo = 0;
-        private struct L539
-        {
-            public int count {get;set;}
-            public int no;
-        }
+        //private struct L539
+        //{
+        //    public int count {get;set;}
+        //    public int no = 0;
+        //}
         public Prediction(GType gType)
         {
             _Type = gType;
@@ -48,7 +48,7 @@ namespace Lottery_1
             //{
             //    EndNumber(maxNo - 6 * i);
             //}
-            EndNumber(maxNo-6);
+            EndNumber(maxNo-12);
         }
         private void EndNumber(int limetNo)
         {
@@ -70,7 +70,7 @@ namespace Lottery_1
             }
             label2.Text = str;
             
-            List<L539> list539 = new List<L539>();
+            //List<L539> list539 = new List<L539>();
             int count = 0;
             label3.Text ="";
             foreach (var item in (LMath.GetCountList(list100)).OrderByDescending(e=>e.count))
@@ -82,10 +82,10 @@ namespace Lottery_1
             }
             label5.Text = "";
             count = 0;
-            foreach (var item in (LMath.GetCountList(list10)).Where(e=>e.count>1).OrderByDescending(e => e.count))
+            foreach (var item in (LMath.GetCountList(list10)).Where(e=>e.count>2).OrderByDescending(e => e.count))
             {
                 count++;
-                if (count > 5)
+                //if (count > 5)
                     label5.Text += item.No + " , ";
                 //if (count == 7)
                 //    break;

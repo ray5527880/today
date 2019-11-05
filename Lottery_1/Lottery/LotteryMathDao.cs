@@ -102,5 +102,40 @@ namespace Lottery
 
             return list;
         }
+        public List<NumberStruct.EndNumber> GetNextNumber(List<Number.Number_539> m539, Number.Number_539 nowNumber)
+        {
+            List<NumberStruct.EndNumber> list = new List<NumberStruct.EndNumber>();
+            for (int i = 0; i < 39; i++)
+            {
+                var _list = new NumberStruct.EndNumber();
+                _list.No = i + 1;
+                _list.count = 0;
+                list.Add(_list);
+            }
+
+            foreach (var item in m539.OrderBy(e => e.No))
+            {
+
+            }
+
+
+           
+
+            return list;
+        }
+        //private List<NumberStruct.EndNumber> Getnextnumber(List<Number.Number_539> m539, int no, List<NumberStruct.EndNumber> list)
+        //{
+        //    var _m539 = m539.OrderBy(e => e.No).ToArray();
+        //    for(int i = 0; i < _m539.Count() - 1; i++)
+        //    {
+        //        if (_m539.ElementAt(i).n_1 == no)
+        //        {
+        //            list.ElementAt(_m539.ElementAt(i).n_1 - 1).count+=1;
+        //        }
+        //    }
+
+
+        //    return list;
+        //}
     }
 }
