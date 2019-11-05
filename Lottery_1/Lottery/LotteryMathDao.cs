@@ -75,5 +75,32 @@ namespace Lottery
             }
             return _539;
         }
+        public List<NumberStruct.EndNumber> GetCountList(List<Number.Number_539> m539)
+        {
+            List<NumberStruct.EndNumber> list = new List<NumberStruct.EndNumber>();
+
+            for (int i = 0; i < 39; i++)
+            {
+                var _list = new NumberStruct.EndNumber();
+                _list.No = i + 1;
+                _list.count = 0;
+                foreach (var item in m539)
+                {
+                    if (item.n_1 == i + 1)
+                        _list.count++;
+                    if (item.n_2 == i + 1)
+                        _list.count++;
+                    if (item.n_3 == i + 1)
+                        _list.count++;
+                    if (item.n_4 == i + 1)
+                        _list.count++;
+                    if (item.n_5 == i + 1)
+                        _list.count++;
+                }
+                list.Add(_list);
+            }
+
+            return list;
+        }
     }
 }

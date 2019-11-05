@@ -11,7 +11,6 @@ namespace Lottery
         {
             public int No { get; set; }
             public int count { get; set; }
-        }
-        
+        }        
     }
 }

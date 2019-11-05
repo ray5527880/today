@@ -30,5 +30,9 @@ namespace Lottery
         {
             return this.dao.GetTOPList(m539,endNo, limet);
         }
+        public List<NumberStruct.EndNumber> GetCountList(List<Number.Number_539> m539)
+        {
+            return this.dao.GetCountList(m539);
+        }
     }
 }

@@ -48,13 +48,14 @@ namespace Lottery_1
             //{
             //    EndNumber(maxNo - 6 * i);
             //}
-            EndNumber(maxNo-18);
+            EndNumber(maxNo-6);
         }
         private void EndNumber(int limetNo)
         {
             var _list539 = List539.Where(e => e.No <= limetNo);
             var list100 = LMath.GetTOPList(List539, limetNo, 100);
             var list20 = LMath.GetTOPList(List539, limetNo, 20);
+            var list10 = LMath.GetTOPList(List539, limetNo, 10);
             var endnumber = LMath.GetEndNumber(list100);
             string str = string.Empty;
             int max1 = 0;
@@ -70,69 +71,25 @@ namespace Lottery_1
             label2.Text = str;
             
             List<L539> list539 = new List<L539>();
-
-            for (int i = 0; i < 39; i++) 
+            int count = 0;
+            label3.Text ="";
+            foreach (var item in (LMath.GetCountList(list100)).OrderByDescending(e=>e.count))
             {
-                L539 _539 = new L539();
-                _539.no = i + 1;
-                int c = 0;
-                foreach (var item in list20)
-                {
-                    if (item.n_1 % 10 == max1 && item.n_1 == i + 1)
-                    {
-                        c++;
-                    }
-                    else if (item.n_2 % 10 == max1 && item.n_2 == i + 1)
-                    {
-                        c++;
-                    }
-                    else if (item.n_3 % 10 == max1 && item.n_3 == i + 1)
-                    {
-                        c++;
-                    }
-                    else if (item.n_4 % 10 == max1 && item.n_4 == i + 1)
-                    {
-                        c++;
-                    }
-                    else if (item.n_5 % 10 == max1 && item.n_5 == i + 1)
-                    {
-                        c++;
-                    }
-                    if (item.n_1 % 10 == max2 && item.n_1 == i + 1)
-                    {
-                        c++;
-                    }
-                    else if (item.n_2 % 10 == max2 && item.n_2 == i + 1)
-                    {
-                        c++;
-                    }
-                    else if (item.n_3 % 10 == max2 && item.n_3 == i + 1)
-                    {
-                        c++;
-                    }
-                    else if (item.n_4 % 10 == max2 && item.n_4 == i + 1)
-                    {
-                        c++;
-                    }
-                    else if (item.n_5 % 10 == max2 && item.n_5 == i + 1)
-                    {
-                        c++;
-                    }
-                }
-                _539.count = c;
-                list539.Add(_539);
-            }
-            var itttt = list539.OrderByDescending(e => e.count);
-            string strlable = string.Empty;
-            int c2 = 0;
-            foreach(var item in itttt)
-            {
-                strlable += item.no.ToString() + " ";
-                c2++;
-                if (c2 == 4)
+                label3.Text += item.No + " , ";
+                count++;
+                if (count == 13)
                     break;
             }
-            label3.Text = strlable;
+            label5.Text = "";
+            count = 0;
+            foreach (var item in (LMath.GetCountList(list10)).Where(e=>e.count>1).OrderByDescending(e => e.count))
+            {
+                count++;
+                if (count > 5)
+                    label5.Text += item.No + " , ";
+                //if (count == 7)
+                //    break;
+            }
         }
     }
 }
