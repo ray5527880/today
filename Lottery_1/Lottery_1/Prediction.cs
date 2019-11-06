@@ -17,6 +17,7 @@ namespace Lottery_1
         private List<Number.Number_539> List539;
         private LotteryMath LMath;
         private int maxNo = 0;
+        private int ccc = 0;
         //private struct L539
         //{
         //    public int count {get;set;}
@@ -43,12 +44,13 @@ namespace Lottery_1
 
         private void button1_Click(object sender, EventArgs e)
         {
-            label4.Text = " 說明：";
+            label4.Text = " 說明：" + (maxNo - ccc).ToString();
             //for (int i = 0; i < 4; i++)
             //{
             //    EndNumber(maxNo - 6 * i);
             //}
-            EndNumber(maxNo-12);
+            EndNumber(maxNo-ccc);
+            ccc++;
         }
         private void EndNumber(int limetNo)
         {
@@ -75,20 +77,41 @@ namespace Lottery_1
             label3.Text ="";
             foreach (var item in (LMath.GetCountList(list100)).OrderByDescending(e=>e.count))
             {
-                label3.Text += item.No + " , ";
+                label3.Text += " " + item.No + " ";
                 count++;
                 if (count == 13)
                     break;
             }
             label5.Text = "";
             count = 0;
-            foreach (var item in (LMath.GetCountList(list10)).Where(e=>e.count>2).OrderByDescending(e => e.count))
+            foreach (var item in (LMath.GetCountList(list10)).Where(e=>e.count>1).OrderByDescending(e => e.count))
             {
                 count++;
-                //if (count > 5)
-                    label5.Text += item.No + " , ";
-                //if (count == 7)
-                //    break;
+                label5.Text += " " + item.No + " ";
+            }
+            label6.Text = "";
+            count = 0;
+            foreach (var item in LMath.GetNextNumber(list100,list100.ElementAt(0)).OrderByDescending(e=>e.count))
+            {
+                count++;
+                label6.Text += " " + item.No + " ";
+                if (count == 6)
+                    break;
+            }
+            label7.Text = "";
+            for (int i = 1; i < 40; i++)
+            {
+                bool t1 = false;
+                bool t2 = false;
+                bool t3 = false;
+                if (label3.Text.IndexOf(" " + i.ToString() + " ") > 0)
+                    t1 = true;
+                if (label5.Text.IndexOf(" " + i.ToString() + " ") > 0)
+                    t2 = true;
+                if (label6.Text.IndexOf(" " + i.ToString() + " ") > 0)
+                    t3 = true;
+                if (t1 && t2 && t3)
+                    label7.Text += i.ToString() + " , ";
             }
         }
     }

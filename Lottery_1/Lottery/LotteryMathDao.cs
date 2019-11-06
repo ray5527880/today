@@ -105,37 +105,74 @@ namespace Lottery
         public List<NumberStruct.EndNumber> GetNextNumber(List<Number.Number_539> m539, Number.Number_539 nowNumber)
         {
             List<NumberStruct.EndNumber> list = new List<NumberStruct.EndNumber>();
+
+            int[] numberCount = new int[39];
+
+            numberCount = Getnextnumber(m539, nowNumber.n_1, numberCount);
+            numberCount = Getnextnumber(m539, nowNumber.n_2, numberCount);
+            numberCount = Getnextnumber(m539, nowNumber.n_3, numberCount);
+            numberCount = Getnextnumber(m539, nowNumber.n_4, numberCount);
+            numberCount = Getnextnumber(m539, nowNumber.n_5, numberCount);
+
             for (int i = 0; i < 39; i++)
             {
                 var _list = new NumberStruct.EndNumber();
                 _list.No = i + 1;
-                _list.count = 0;
+                _list.count = numberCount[i];
                 list.Add(_list);
-            }
-
-            foreach (var item in m539.OrderBy(e => e.No))
-            {
-
-            }
-
-
-           
+            }         
 
             return list;
         }
-        //private List<NumberStruct.EndNumber> Getnextnumber(List<Number.Number_539> m539, int no, List<NumberStruct.EndNumber> list)
-        //{
-        //    var _m539 = m539.OrderBy(e => e.No).ToArray();
-        //    for(int i = 0; i < _m539.Count() - 1; i++)
-        //    {
-        //        if (_m539.ElementAt(i).n_1 == no)
-        //        {
-        //            list.ElementAt(_m539.ElementAt(i).n_1 - 1).count+=1;
-        //        }
-        //    }
+        private int [] Getnextnumber(List<Number.Number_539> m539, int no, int [] numberCount)
+        {
+            var _m539 = m539.OrderBy(e => e.No).ToArray();
+            for (int i = 0; i < _m539.Count() - 1; i++)
+            {
+                if (_m539.ElementAt(i).n_1 == no)
+                {
+                    numberCount[_m539.ElementAt(i).n_1 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_2 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_3 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_4 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_5 - 1]++;
+                }
+                else if (_m539.ElementAt(i).n_2 == no)
+                {
+                    numberCount[_m539.ElementAt(i).n_1 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_2 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_3 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_4 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_5 - 1]++;
+                }
+                else if (_m539.ElementAt(i).n_3 == no)
+                {
+                    numberCount[_m539.ElementAt(i).n_1 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_2 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_3 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_4 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_5 - 1]++;
+                }
+                else if (_m539.ElementAt(i).n_4 == no)
+                {
+                    numberCount[_m539.ElementAt(i).n_1 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_2 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_3 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_4 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_5 - 1]++;
+                }
+                else if (_m539.ElementAt(i).n_5 == no)
+                {
+                    numberCount[_m539.ElementAt(i).n_1 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_2 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_3 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_4 - 1]++;
+                    numberCount[_m539.ElementAt(i).n_5 - 1]++;
+                }
+            }
 
 
-        //    return list;
-        //}
+            return numberCount;
+        }
     }
 }
