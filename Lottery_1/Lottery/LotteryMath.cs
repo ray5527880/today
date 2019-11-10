@@ -38,5 +38,9 @@ namespace Lottery
         {
             return this.dao.GetNextNumber(m539, nowNumber);
         }
+        public List<NumberStruct.EndNumber> GetNextNumber(List<Number.Number_539> m539, int nowNumber)
+        {
+            return this.dao.GetNextNumber(m539, nowNumber);
+        }
     }
 }

@@ -124,6 +124,25 @@ namespace Lottery
 
             return list;
         }
+
+        public List<NumberStruct.EndNumber> GetNextNumber(List<Number.Number_539> m539, int nowNumber)
+        {
+            List<NumberStruct.EndNumber> list = new List<NumberStruct.EndNumber>();
+
+            int[] numberCount = new int[39];
+
+            numberCount = Getnextnumber(m539, nowNumber, numberCount);
+
+            for (int i = 0; i < 39; i++)
+            {
+                var _list = new NumberStruct.EndNumber();
+                _list.No = i + 1;
+                _list.count = numberCount[i];
+                list.Add(_list);
+            }
+
+            return list;
+        }
         private int [] Getnextnumber(List<Number.Number_539> m539, int no, int [] numberCount)
         {
             var _m539 = m539.OrderBy(e => e.No).ToArray();
@@ -170,8 +189,7 @@ namespace Lottery
                     numberCount[_m539.ElementAt(i).n_5 - 1]++;
                 }
             }
-
-
+            
             return numberCount;
         }
     }

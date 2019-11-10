@@ -61,8 +61,8 @@ namespace Lottery_1
             var list10 = LMath.GetTOPList(List539, limetNo, 10);
             var endnumber = LMath.GetEndNumber(list100);
             string str = string.Empty;
-            int max1 = 0;
-            int max2 = 0;
+            //int max1 = 0;
+            //int max2 = 0;
             //foreach (var item in endnumber.OrderByDescending(e=>e.count))
             //{
             //    //str += item.No + "：" + item.count+"  ";
@@ -79,30 +79,33 @@ namespace Lottery_1
             {
                 label3.Text += " " + item.No + " ";
                 count++;
-                if (count == 6)
+                if (count == 12)
                     break;
             }
             label5.Text = " ";
-            count = 0;
-            foreach (var item in (LMath.GetCountList(list10)).Where(e=>e.count>1).OrderByDescending(e => e.count))
-            {
-                count++;
-                label5.Text += " " + item.No + " ";
-            }
+            //foreach(var item in LMath.GetEndNum)
+            //count = 0;
+            //foreach (var item in (LMath.GetCountList(list10)).Where(e=>e.count>1).OrderByDescending(e => e.count))
+            //{
+            //    count++;
+            //    label5.Text += " " + item.No + " ";
+            //}
             label6.Text = " ";
             count = 0;
+
             foreach (var item in LMath.GetNextNumber(list100,list100.ElementAt(0)).OrderByDescending(e=>e.count))
             {
                 count++;
+                if(count>6)
                 label6.Text += " " + item.No + " ";
-                if (count == 6)
+                if (count == 18)
                     break;
             }
             label7.Text = "";
             for (int i = 1; i < 40; i++)
             {
                 bool t1 = false;
-                bool t2 = false;
+                bool t2 = true;
                 bool t3 = false;
                 if (label3.Text.IndexOf(" " + i.ToString() + " ") > 0)
                     t1 = true;
@@ -123,7 +126,7 @@ namespace Lottery_1
                 {
                     label2.Text = " " + item.n_1 + " " + " " + item.n_2 + " " + " " + item.n_3 + " " + " " + item.n_4 + " " + " " + item.n_5 + " ";
                     label8.Text = ch(label3.Text, item);
-                    label9.Text = ch(label5.Text, item);
+                    label9.Text = ch(label7.Text, item);
                     label10.Text = ch(label6.Text, item);
                 }                    
             }
