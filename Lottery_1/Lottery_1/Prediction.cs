@@ -18,6 +18,11 @@ namespace Lottery_1
         private LotteryMath LMath;
         private int maxNo = 0;
         private int ccc = 0;
+        private int YES2 = 0;
+        private int YES3 = 0;
+        private int YES4 = 0;
+        private int nextselect = 0;
+        private int endsleect = 1;
         //private struct L539
         //{
         //    public int count {get;set;}
@@ -50,8 +55,25 @@ namespace Lottery_1
             //{
             //    EndNumber(maxNo - 6 * i);
             //}
-            EndNumber(maxNo-ccc);
-            ccc++;
+            YES2 = 0;
+            YES3 = 0;
+
+            nextselect++;
+            if (nextselect == endsleect)
+                nextselect++;
+            if (nextselect == 10)
+            {
+                endsleect++;
+                nextselect =endsleect+ 1;
+               
+            }
+            
+            ccc = 0;
+            for (int i = 0; i < 50; i++)
+            {
+                EndNumber(maxNo - ccc);
+                ccc++;
+            }
         }
         private void EndNumber(int limetNo)
         {
@@ -82,7 +104,17 @@ namespace Lottery_1
                 if (count == 12)
                     break;
             }
-            label5.Text = " ";
+            label5.Text = "尾數：";
+            count = 0;
+            foreach (var item in LMath.GetEndNumber(list100).OrderByDescending(e=>e.count))
+            {
+                count++;
+                //if(count==endsleect)
+                //    label5.Text += item.No;
+                //if (count > 4)
+                //    break;
+                  
+            }
             //foreach(var item in LMath.GetEndNum)
             //count = 0;
             //foreach (var item in (LMath.GetCountList(list10)).Where(e=>e.count>1).OrderByDescending(e => e.count))
@@ -101,6 +133,32 @@ namespace Lottery_1
                 if (count == 18)
                     break;
             }
+
+            label11.Text = "尾數：";
+            List<NumberStruct.EndNumber> numberList = new List<NumberStruct.EndNumber>();
+            for (int i = 1; i < 10; i++)
+            {
+                var _numberlist = new NumberStruct.EndNumber();
+                _numberlist.No = i;
+                foreach (var item in LMath.GetNextNumber(list100, list100.ElementAt(0)))
+                {
+                    if (item.No % 10 == i)
+                        _numberlist.count += item.count;
+                }
+                numberList.Add(_numberlist);
+            }
+            count = 0;
+            foreach (var item in numberList.OrderByDescending(e => e.count))
+            {
+                count++;
+                if (count == nextselect)
+                    label11.Text += item.No.ToString();
+                if(count ==endsleect)
+                    label5.Text += item.No.ToString();
+                //if (count > 4)
+                  //  break;
+            }
+
             label7.Text = "";
             for (int i = 1; i < 40; i++)
             {
@@ -125,11 +183,13 @@ namespace Lottery_1
                 foreach (var item in List539.Where(e => e.No == maxNo - ccc + 1))
                 {
                     label2.Text = " " + item.n_1 + " " + " " + item.n_2 + " " + " " + item.n_3 + " " + " " + item.n_4 + " " + " " + item.n_5 + " ";
+                    get2(item.n_1, item.n_2, item.n_3, item.n_4, item.n_5);
                     label8.Text = ch(label3.Text, item);
                     label9.Text = ch(label7.Text, item);
                     label10.Text = ch(label6.Text, item);
                 }                    
             }
+            label12.Text = "2合：" + YES2 + "  3合：" + YES3 + "  4合：" + YES4;
             count=1;
             chart1.Series[0].Points.Clear();
             chart1.Series[1].Points.Clear();
@@ -147,10 +207,36 @@ namespace Lottery_1
                 chart1.Series[3].Points.AddXY(count, GetAVGDOWN(_list10));
 
                 count++;
-
-
-
                 //chart1.Series[0].ChartType=SeriesChartType.Line
+            }
+        }
+
+        private void get2(int no1,int no2,int no3,int no4, int no5)
+        {
+            int dcount = 0;
+            if (no1 % 10 == Convert.ToInt32(label11.Text.Substring(label11.Text.Length - 1)) || no1 % 10 == Convert.ToInt32(label5.Text.Substring(label5.Text.Length - 1)))
+                dcount++;
+            if (no2 % 10 == Convert.ToInt32(label11.Text.Substring(label11.Text.Length - 1)) || no2 % 10 == Convert.ToInt32(label5.Text.Substring(label5.Text.Length - 1)))
+                dcount++;
+            if (no3 % 10 == Convert.ToInt32(label11.Text.Substring(label11.Text.Length - 1)) || no3 % 10 == Convert.ToInt32(label5.Text.Substring(label5.Text.Length - 1)))
+                dcount++;
+            if (no4 % 10 == Convert.ToInt32(label11.Text.Substring(label11.Text.Length - 1)) || no4 % 10 == Convert.ToInt32(label5.Text.Substring(label5.Text.Length - 1)))
+                dcount++;
+            if (no5 % 10 == Convert.ToInt32(label11.Text.Substring(label11.Text.Length - 1)) || no5 % 10 == Convert.ToInt32(label5.Text.Substring(label5.Text.Length - 1)))
+                dcount++;
+
+            if (dcount == 2)
+                YES2++;
+            else if (dcount == 3)
+            {
+                YES2 += 3;
+                YES3++;
+            }
+            else if (dcount == 3)
+            {
+                YES2 += 6;
+                YES3+=3;
+                YES4++;
             }
         }
 
